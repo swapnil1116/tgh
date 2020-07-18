@@ -5,7 +5,9 @@ const path=require("path")
 const mongoose = require('mongoose');
 const bcrypt=require("bcrypt")
 const passport=require("passport")
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
+var uri="mongodb+srv://satyammishra:satyam@121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majorityretryWrites=true&w=majority"
+mongoose.connect(uri , {useNewUrlParser: true ,useUnifiedTopology:true});
+// mongoose.connect(uri || 'mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
 const session=require("express-session");
 const flash=require("connect-flash")
 const  MongoDBStore = require('connect-mongodb-session')(session);
@@ -22,7 +24,7 @@ const app=express();
 require("./config/passport")(passport);
 // ENVIRONMENT VARIABLES
 const{
-    PORT=8000,
+    PORT = process.env.PORT || 8000,
     NODE_ENV="development",
     session_Name="mySession",
     session_Secret="mySecret",
