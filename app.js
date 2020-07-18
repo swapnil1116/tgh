@@ -7,9 +7,9 @@ const passport=require("passport")
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://satyammishra:satyam%40121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true  , useUnifiedTopology:true});
 client.connect(err => {
-  const collection = client.db("test").collection("devices");
+  const collection = client.db("OurLogistics").collection("devices");
   // perform actions on the collection object
   client.close();
 });
