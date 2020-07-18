@@ -6,7 +6,7 @@ const bcrypt=require("bcrypt")
 const passport=require("passport")
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://satyammishra:satyam121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority";
+const uri = "mongodb+srv://satyammishra:satyam%40121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
