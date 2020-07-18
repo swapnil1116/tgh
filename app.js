@@ -5,7 +5,7 @@ const path=require("path")
 const mongoose = require('mongoose');
 const bcrypt=require("bcrypt")
 const passport=require("passport")
-var uri="mongodb+srv://satyammishra:satyam@121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majorityretryWrites=true&w=majority"
+var uri="mongodb+srv://satyammishra:satyam121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majorityretryWrites=true&w=majority"
 mongoose.connect(uri , {useNewUrlParser: true ,useUnifiedTopology:true});
 // mongoose.connect(uri || 'mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
 const session=require("express-session");
