@@ -1,9 +1,11 @@
+// My IP Address : 157.34.99.189
+
 const express=require("express");
 const path=require("path")
 const mongoose = require('mongoose');
 const bcrypt=require("bcrypt")
 const passport=require("passport")
-mongoose.connect('mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
 const session=require("express-session");
 const flash=require("connect-flash")
 const  MongoDBStore = require('connect-mongodb-session')(session);
