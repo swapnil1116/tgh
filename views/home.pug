@@ -1,0 +1,130 @@
+extends base.pug
+block style
+    link(rel='stylesheet', href='../static/style/homeStyle.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
+  
+block content
+    section#main-section
+      #main-section-overlay
+      #heading-inside-main-section
+        h1 It's Your World, Make It Amazing.
+        h3 India’s 1st Online Booking Platform with Live Bidding
+        #main-buttons
+          button#transferer For Transferer
+          button#transporter For Transporter
+    section#why-us-section
+      #div-inside-why-us-section
+        #heading-inside-why-us-section
+          h1 Why "Our Logistics"?
+        #All-points-of-why-us-section
+          .point-of-why-us-section
+            .image-inside-point-of-why-us-section
+              img(src='../static/img/trust.jpg', alt='')
+            .percent-inside-point-of-why-us-section
+              h6 We are
+              h1
+                | 100
+                span %
+            .topic-inside-why-us-section Trust Worthy
+            .keypoints-inside-why-us-section
+              h6 Because of
+              ul
+                li.list-items-inside-keypoints-of-why-us-section Assured Payments
+                li.list-items-inside-keypoints-of-why-us-section Safety Of Your Goods
+                li.list-items-inside-keypoints-of-why-us-section Our Highly Skilled Team
+          .point-of-why-us-section
+            .image-inside-point-of-why-us-section
+              img(src='../static/img/business.jpg', alt='')
+            .percent-inside-point-of-why-us-section
+              h6 Save upto
+              h1
+                | 71
+                span %
+            .topic-inside-why-us-section Time Spend
+            .keypoints-inside-why-us-section
+              h6 Through
+              ul
+                li.list-items-inside-keypoints-of-why-us-section Instantly getting trucks for goods
+                li.list-items-inside-keypoints-of-why-us-section Online Paperwork/Payment
+                li.list-items-inside-keypoints-of-why-us-section GPS Tracking
+          .point-of-why-us-section
+            .image-inside-point-of-why-us-section
+              img(src='../static/img/reducePrice.jpg', alt='')
+            .percent-inside-point-of-why-us-section
+              h6 Reduce upto
+              h1
+                | 38
+                span %
+            .topic-inside-why-us-section Expenditure
+            .keypoints-inside-why-us-section
+              h6 On
+              ul
+                li.list-items-inside-keypoints-of-why-us-section Cost Of Transporting Goods
+                li.list-items-inside-keypoints-of-why-us-section Serviceable charges
+    section#below-footer-section
+      .divs-inside-below-footer-section
+        #stay-connected
+          h1 Wanna stay connected with "Our Logistics"?
+        - var user = {AllErrors:AllErrors, name: name , emailAddress:emailAddress}    
+        include partial/flash-messages.pug 
+        form#subscribe-email-form(method='POST', action='/' , onsubmit="return true")
+          .divs-inside-subscribe-email
+            input#name(type='text' , name="name", value=user.name , placeholder='Enter Your Name' , autofocus="" )
+          .divs-inside-subscribe-email
+            input#emailAddress(type='text', name="emailAddress" , value=user.emailAddress , placeholder='Enter Your Email')
+          #div-for-subscribe-button.divs-inside-subscribe-email
+            button#subscribe-us-button(type='submit' onsubmit="myFunction()") Subscribe
+ 
+      .divs-inside-below-footer-section
+        #div-social-media-links.div-with-links
+          // Add font awesome icons
+          a.fa.fa-facebook(href='#')
+          a.fa.fa-twitter(href='#')
+          a.fa.fa-instagram(href='#')
+          a.fa.fa-linkedin(href='#')
+      .divs-inside-below-footer-section
+        #copyrights
+          | © All Rights Reserved Our Logistics Pvt. Ltd. 2020                
+    // SIDEBAR TRANSFERER STARTS FROM HERE
+    section#cross-transferer
+      a(href='') ✕
+    section.transferer-section
+      #transferer-login
+        #old-user
+          a(href='')
+            h3 Hello, Log in... 
+        #new-user
+          h2 New Customer?
+          button Sign up
+      #category
+        h1 All Categories
+        ul
+          a(href='')
+            li#product-list
+              | Men's Fashion
+              i.fa.fa-angle-right.arrow
+      #transferer-logo
+        // <img id="logo-img" src="img/logo.png" alt="">
+        h1 The  Mishra's
+    // SIDEBAR TRANSPORTER STARTS FROM HERE
+    section#cross-transporter
+      a(href='') ✕
+    section.transporter-section
+      #transporter-login
+        #old-user
+          a(href='')
+            h3 Hello, Log in... 
+        #new-user
+          h2 New Customer?
+          button Sign up
+      #category
+        h1 All Categories
+        p
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis facere dolorem odio illo atque ea iste quas cumque voluptatibus minus.
+      #transporter-logo
+        // <img id="logo-img" src="img/logo.png" alt="">
+        h1 The  Mishra's
+block script      
+    script(src='../static/script/homeScript.js')

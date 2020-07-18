@@ -1,0 +1,53 @@
+:root{
+    --primary-color:#143d59;
+    --secondary-color:#f4b41a;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 105vh;
+}
+#bidding-section{
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 59vw;
+    align-items: center;
+    background-color: #185478;
+    height: 90vh;
+}
+#heading h1{
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+form{
+    width: 50vw;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+    padding: 1rem;
+}
+.label-inside-form{
+    color: white;
+}
+.divs-containing-input{
+    margin: 0.9rem 0;
+}
+#create-auction-button{
+    width: 100%;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.2rem;
+    height: 5.3vh;
+}
+.input-div>div>div{
+    padding: 15px 11px;
+}
+
+

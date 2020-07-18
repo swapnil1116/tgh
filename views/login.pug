@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Login
+    
+    link(rel='stylesheet', href='../static/style/loginStyle.css')
+    link(rel='stylesheet', href='../static/style/homeStyle.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
+  body
+
+    - var user = {mobileNumber:mobileNumber, AllErrors:AllErrors}
+  
+    section#login-section
+      #inside-login-section
+        #login-heading
+          h1 Login
+        include partial/flash-messages.pug    
+        form#login-form(action="/login" ,method="post")
+          div
+            label.label-inside-form(for="mobileNumber") Enter Registered Mobile Number
+            br
+            if (user.AllErrors).length===0
+              input#mobileNumber.input-inside-form(type="text"  required='' value="" autofocus=""  name="mobileNumber")
+            else  
+              input#mobileNumber.input-inside-form(type="text"  required='' value=""  name="mobileNumber")
+          div
+            label.label-inside-form(for="password") Enter Password
+            span
+              a(href="/forgetPassword") &nbsp;Forgot Password
+            br
+            input#password.input-inside-form(type="password"  required='' name="password"  )
+          #show-pass-div
+            input#show-pass(type="checkbox" name="show-pass" onclick="myFunction()")
+            label(for="show-pass") Show Password
+          div
+            input#loginButton(type="submit" value="Login")
+        #new-user-in-login-form
+          h1 New to &quot;Our Logistics&quot;?&nbsp;
+          a(href="/createAccount")
+            h1 Create An Account 
+          
+script(src="../static/script/loginScript.js")
+script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")

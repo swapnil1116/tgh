@@ -1,0 +1,840 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+:root{
+    --primary-color:#143d59;
+    --secondary-color:#f4b41a;
+}
+
+/* THIS IS FOR THE OUTERMOST LAYER  */
+#outermost{
+    z-index: 2;
+    position: fixed;
+}
+.shadowing{
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    opacity: 0.6;
+    
+}
+#navbar{
+    display: flex;
+    justify-content: space-around;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 75px;
+
+}
+#inside-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+}
+#navbar-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: white;
+}
+#navbar #inside-navbar #logo{
+    font-family: 'Mr Dafoe';
+    font-size: 23px;
+    color: var(--primary-color);
+}
+
+
+#navbar ul{
+    display: flex;
+    align-items: center;
+    transition: 3s all ease;
+    
+}
+#navbar ul .nav-list-items{
+    list-style: none;
+    color: #fcfcfc;
+}
+
+#navbar ul .nav-list-items a{
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: 'Fredoka One', cursive;
+    color: var(--primary-color);
+    padding: 15px 7px;
+    margin: 0px 12px;
+}
+#navbar ul .nav-list-items #signin-button{
+    background-color: var(--secondary-color);
+    color: white;
+    border: 1px solid black;
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.2s all;
+}
+#navbar ul .nav-list-items #signin-button:hover{
+    border: 1px solid black;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}
+
+#navbar ul .nav-list-items #search-icon-navbar{
+    padding-right: 0;
+    margin-right: 0;
+}
+
+/* THIS IS THE DIV FOR SEARCH BAR INPUT */
+#div-for-search{
+    z-index: 3;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    height: 75px;
+    position: fixed;
+    background-color: white;
+    top: 0px;
+}
+#div-inside-search-div{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 80vw;
+
+}
+#navbar-search{
+    width: 95%;
+    font-size: 30px;
+    outline: none;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#cross-navbar-search{
+    font-size: 30px;
+    padding: 15px ;
+    cursor: pointer;
+}
+
+
+
+/* HOVER ON NAVBAR LINKS */
+#hover-on-company{
+    display: none;
+    z-index: 3;
+    position: fixed;
+    top: 60px;
+    right: 42.5rem;
+    width: 16vw;
+    background-color: #d8faff;
+    transition: display 5s  ease;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 5s ;
+    /* height: 35vh; */
+    transition: height 5s 0.5s ;
+}
+#hover-on-home{
+    display: none;
+    position: fixed;
+    z-index: 3;
+    top: 60px;
+    right: 32.9rem;
+    width: 16vw;
+    background-color: #d8faff;
+    transition: display 5s  ease;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 5s ;
+    transition: height 5s 0.5s ;
+}
+
+
+#arrow{
+    position: absolute;
+    top: -15px;
+}
+.arrow-up {
+    width: 0px;
+    height: 5px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #d8faff;
+  }
+
+.div-inside-section-of-navbar-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 0px;
+}
+.Allitems-ofdiv-inside-section-of-navbar-links{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Allitems-ofdiv-inside-section-of-navbar-links ul{
+    display: flex;
+    list-style:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.item-hoverShop{
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.item-hoverShop li{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 12px 0px;
+    border-bottom: 1px solid #6fe4f5;
+    color: var(--primary-color);
+    font-family: 'Fredoka One', cursive;
+    font-size: 17px;
+}
+.item-hoverShop li:hover{
+    background-color: var(--secondary-color);
+}
+
+#lastItemOfHoverShop{
+    border-bottom: none;
+}
+
+
+/* MAIN SECTION FROM HERE */
+#main-section-overlay{
+    width: 100%;
+    height: 85vh;
+    position: absolute;
+    background-color: black;
+    top: 75px;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+#main-section{
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+#main-section #heading-inside-main-section{
+    width: 47%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#heading-inside-main-section h1{
+    font-size: 3vw;
+    padding-bottom: 1rem;
+}    
+#heading-inside-main-section h3{
+    font-size: 25px;
+    width: 500px;
+}
+
+#main-section::before{
+    content:"";
+    position: fixed;
+    background: url(../img/bg1.jpg) no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+    width: 100%;
+    z-index: -1;
+    height: 100%;
+    top: 0;
+    transition: 3s all ease;
+    filter: opacity(0.8);
+}
+#main-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#main-buttons button{
+    width: 166px;
+    margin: 0px 25px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #a38236, var(--secondary-color));
+    color:#ffffff;
+    font-size: 17px;
+    margin-top: 40px;
+    border: 1px solid rgb(32, 76, 97);
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    font-weight: 900;
+    transition: transform 0.15s ease-in;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#main-buttons button:hover{
+    border: 1px solid var(--primary-color);
+    color: var(--secondary-color);
+    background: var(--primary-color);
+    transform: translateY(-4px);
+}
+
+
+#deleteMe{
+    border: 1px solid red;
+    height: 1500px;
+    background-color: rebeccapurple;
+}
+#phone-call{
+    position: fixed;
+    top: 84vh;
+    left: 89vw;
+
+    transition: 0.1s all;
+}
+#phone-call:hover{
+    top: 83.5vh;
+}
+#div-inside-phone-call{
+    width: 80px;
+    height: 80px;
+    background-color: var(--secondary-color);
+    border:transparent ;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#div-inside-phone-call:hover{
+    background-color: #1948bf;
+    transition: 0.4s all;
+}
+#div-inside-phone-call a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+#div-inside-phone-call img{
+    width: 60%;
+    height:60%;
+}
+
+
+
+
+/* WHY US SECTION'S CSS FROM HERE */
+#why-us-section{
+    background-color: #fffdfd;
+}
+#div-inside-why-us-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#heading-inside-why-us-section{
+    margin-top: 2rem;
+}
+#heading-inside-why-us-section h1{
+    font-size: 3rem;
+    color: var(--primary-color);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+} 
+#All-points-of-why-us-section{
+    margin-top: 2rem;
+}
+.point-of-why-us-section{
+    
+    background-color: #ffffff;
+    margin: 2.5rem 0;
+    transition: 0.3s all;
+    width: 60vw;
+    height: 290px;
+    border-radius: 25px;
+    box-shadow: 0 0 8px rgba(33, 33, 33, 0.05);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--primary-color);
+}
+.point-of-why-us-section div{
+    padding: 0 1rem;
+}
+.point-of-why-us-section:hover{
+    transform: translateY(-5px) translateZ(0);
+    box-shadow: 0 4px 26px 0 rgba(6, 6, 6, 0.28), 0 0 0 transparent;
+}
+.image-inside-point-of-why-us-section{
+    width: 25%;
+    height: 70%;
+}
+.image-inside-point-of-why-us-section img{
+    width: 100%;
+    height:  100%;
+}
+.percent-inside-point-of-why-us-section h6{
+    font-size: 2rem;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+}
+.percent-inside-point-of-why-us-section h1{
+    font-size: 6rem;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+}
+.percent-inside-point-of-why-us-section h1 span{
+    opacity: 0.3;
+    font-size: 2rem;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+}
+.topic-inside-why-us-section{
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+}
+.list-items-inside-keypoints-of-why-us-section{
+    font-size: 1.2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.keypoints-inside-why-us-section h6{
+    opacity: 0.36;
+    font-size: 1.5rem;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+}
+
+
+/* FOOTER FROM HERE */
+footer{
+    background-color: #185478;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 40px 0 40px 0;
+    margin-bottom: 500px;
+
+}
+
+footer #main-div-inside-footer{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0px 100px;
+}
+.divs-in-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 28%;
+}
+.divs-in-footer h2{
+    color: white;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+    opacity: 0.6;
+}
+footer .div-with-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+footer .div-with-links a{
+    text-decoration: none;
+    padding: 2px 0px;
+    font-size: 20px;
+    color: white;
+}
+footer .div-with-links a:hover{
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
+
+
+/* BELOW FOOTER SECTION STARTS FROM HERE */
+#below-footer-section{
+    display: none;
+    width: 99vw;
+    height: 500px;
+    background-color:#263867;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    justify-content: space-evenly;
+    z-index: -1;
+    align-items: center;
+    flex-direction: column;
+}
+.divs-inside-below-footer-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#stay-connected{
+    color:#ffffff;
+    font-size: 1.7rem;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+    margin-bottom: 1rem;
+    
+}
+#subscribe-email-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.divs-inside-subscribe-email{
+    margin: 15px 0px 0 25px;
+}
+.divs-inside-subscribe-email:first-child {
+    margin-left: 0;
+}    
+.divs-inside-subscribe-email input{
+    padding: 13px 15px;
+    width: 320px;
+    border-radius: 8px;
+    outline: none;
+    border: 3px solid transparent;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.divs-inside-subscribe-email input:focus{
+
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 8px #04eef9;
+    border: 3px solid #04eef9;
+}
+#div-for-subscribe-button{
+    margin: 15px 0px 0 25px;
+    transition: all 0.3s;
+    outline: none;
+    border: none;
+}
+#div-for-subscribe-button:hover{
+    transform: translateY(-7px); 
+}
+.divs-inside-subscribe-email button{
+    padding: 13px 15px;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    background: linear-gradient(to right, #a38236, var(--secondary-color));
+    color: #ffffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.divs-inside-subscribe-email button:hover{
+    color: #000000;
+    background-color: #75a9fd;
+    /* margin-top: 37px; */
+    transition: all 0.2s ease;
+}
+.errors{
+    display: flex;
+    border: 2px solid #dac9c9;
+    align-items: center;
+    background-color: #a98633;
+    justify-content: space-between;
+    margin: 3px 0px;
+    margin-top: 10px;
+    padding: 0 10px;
+    padding-right: 0;
+}
+.error-message{
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.error-cross{
+    font-size: 25px;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin-left: 10px;
+}
+.error-cross:hover{
+    background-color: #ab3a3a;
+}
+
+ #div-social-media-links{
+    position: relative;
+    left: -25px;
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 0;
+    box-sizing: inherit;
+
+}
+ #div-social-media-links a{
+    font-size: 1.75rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 77%;
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s transform;
+}
+ #div-social-media-links a:hover{
+    text-decoration: none;
+    transform: rotate(360deg);
+    background-color: white;
+}
+.div-with-links a{
+    text-decoration: none;
+    padding: 2px 0px;
+    color: white;
+}
+.div-with-links a:hover{
+    text-decoration: underline;
+}
+.fa-facebook:hover{
+    color: #3B5998;
+}
+
+.fa-twitter:hover{
+    color: #55ACEE;
+}
+.fa-linkedin:hover{
+    color: #007bb5;
+}
+.fa-instagram:hover {
+    color: #125688;
+}
+#copyrights{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 22px;
+    color: white;
+    opacity: 0.4;
+}
+
+/* THIS IS TO CLOSE THE SIDEBAR SECTION AFTER IT IS OPEN */
+#cross-transferer{
+    position: fixed;
+    top: 0px;
+    right: 51vw;
+    font-size: 40px;
+    display: none;
+    z-index: 3;
+}
+#cross-transferer a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* SIDEBAR FOR TRANSFERER SECTION FORM HERE */
+.transferer-section{
+    position: fixed;
+    top: 0;
+    right: -51vw;
+    background-color: #d8faff;
+    /* background-color: #2d2b2b; */
+    width: 50vw;
+    height: 100vh;
+    padding:5px 0px ;
+    padding-top: 0px;
+    transition: all 0.3s ease-in;
+    z-index: 3;
+}
+#old-user{
+    display: flex;
+    background-color: #54e3f3;
+    /* background-color: rgb(243, 187, 150); */
+    width: 100%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+#old-user a h3{
+    font-size: 20px;
+    width: 100%;
+    padding: 13px 10px;
+    color: #2d2b2b;
+}
+#old-user a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#transferer-login button{
+    padding: 2px 15px;
+    background-color: rgb(84, 227, 243);
+    color: #204c61;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    margin: 4px 0px;
+    outline: none;
+}
+#transferer-login button:hover{
+    background-color:  #99d0ff;
+}
+#transferer-login #new-user{
+    padding: 5px 10px;
+    /* padding-top: 5px; */
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+}
+#new-user a{
+    text-decoration: none;
+}
+
+#new-user h2{
+    display: inline;
+    font-size: 21px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    color: black;
+}
+.transferer-section ul li{
+    padding: 15px 12px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    color: #000000;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.transferer-section ul li:hover{
+    background-color: rgb(164, 240, 251);
+}
+.transferer-section ul  a{
+    font-size: 17px;
+    text-decoration: none;
+}
+.transferer-section  #category{
+    margin: 0px 0px;
+    /* padding-top: 10px;  */
+    
+}
+
+.transferer-section h1{
+    margin: 0px 12px;
+    padding-bottom: 7px;
+    color: #204c61;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 18px;
+    border-top: 1px solid #6fe4f5;
+    padding-top: 13px;
+
+}
+.transferer-section #about-user{
+    margin: 10px 0px;    
+
+}
+.sidebar-section .arrow{
+    position: relative;
+
+}
+
+#transferer-logo{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+   
+    /* border: 2px solid red; */
+}
+#transferer-logo h1{
+    font-family: 'Mr Dafoe', cursive;
+    font-weight: bold;
+    font-size: 50px;
+    color: black;
+    text-transform: none;
+    border: none;
+}
+.cart-section{
+    position: fixed;
+    top: 0;
+    right: -502px;
+    background-color: #d8faff;
+    width: 500px;
+    height: 100vh;
+    padding:5px 0px ;
+    padding-top: 0px;
+    transition: all 0.3s ease-in;
+    z-index: 3;
+    overflow-y: overlay;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.show-transferer{
+    right: 0px;    
+}
+
+
+/* THIS IS TO CLOSE THE SIDEBAR SECTION AFTER IT IS OPEN */
+#cross-transporter{
+    position: fixed;
+    top: 0px;
+    left: 51vw;
+    font-size: 40px;
+    display: none;
+    z-index: 3;
+}
+#cross-transporter a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* SIDEBAR FOR TRANSPORTER STARTS FROM HERE */
+.transporter-section{
+    position: fixed;
+    top: 0;
+    left: -50vw;
+    background-color: #d8faff;
+    width: 50vw;
+    height: 100vh;
+    padding:5px 0px ;
+    padding-top: 0px;
+    transition: all 0.3s ease-in;
+    z-index: 3;
+}
+.show-transporter{
+    left: 0;
+}

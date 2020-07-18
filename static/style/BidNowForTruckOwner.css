@@ -1,0 +1,75 @@
+.div-containing-BidNowButton{
+    width: 30%;
+    margin-top: 10px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+}
+
+#budget{
+    padding: 10px; 
+    outline: none;
+    font-size: 1.3rem;
+ }
+ #budget:hover{
+     border: 2px solid var(--secondary-color);
+     outline: var(--primary-color);
+ }
+ #budget:focus-within{
+     border: 2px solid var(--primary-color);
+ }
+ #bid-now-button{
+    
+     font-size: 1.3rem;
+     cursor: pointer;
+     background-color: var(--secondary-color);
+     outline: none;
+     box-sizing: border-box;
+     border: none;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+     font-size: 1.2rem;
+     color: white;
+     text-decoration: none;
+     width: 100%;
+     padding: 10px;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center; 
+ }
+ #bid-now-button:hover{
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+.errors{
+    display: flex;
+    border: 2px solid #dac9c9;
+    align-items: center;
+    background-color: #a98633;
+    justify-content: space-between;
+    margin: 3px 0px;
+    margin-top: 10px;
+    padding: 0 10px;
+    padding-right: 0;
+}
+.error-message{
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.error-cross{
+    font-size: 25px;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin-left: 10px;
+}
+.error-cross:hover{
+    background-color: #ab3a3a;
+}

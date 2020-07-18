@@ -1,0 +1,150 @@
+#createAccount-section{
+    display: flex;
+    flex-direction: column;
+    /* height: 85vh; */
+    justify-content: center;
+    /* border: 2px solid black; */
+    text-align: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+#createAccount-section::before{
+    content:"";
+    position: fixed;
+    background: url(../img/loginBG.jpg) no-repeat fixed center;
+    filter: brightness(0.4);
+    background-size: 100%;
+    width: 100%;
+    z-index: -1;
+    height: 100%;
+    top: 0;
+}
+#inside-createAccount-section{
+    width: 550px;
+    /* height: 305px; */
+    background-color: #27241f;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 15px 35px;
+    box-sizing: border-box;
+    border: 2px solid #5d5c5c;
+    color: white;
+    box-shadow: 0 6px 8px 0 rgba(255, 145, 145, 0.25), 0 8px 20px 0 rgba(0, 102, 255, 0.19)
+}
+#createAccount-heading{
+    padding-bottom: 20px;
+}
+#createAccount-form{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+#createAccount-form div{
+    text-align: left;
+    padding: 5px 0px;
+}
+
+#createAccount-form .label-inside-form{
+    font-size: 16px;
+}
+
+#createAccount-form .input-inside-form{
+    width: 100%;
+    font-size: 16px;
+    border: 2px solid transparent;
+    outline: none;
+    border-radius: 5px;
+    padding: 4px 5px;
+    box-sizing: border-box;
+    color: black;
+}
+#createAccount-form .input-inside-form:focus-within{
+    border: 2px solid rgba(231, 173, 134,3);
+    box-shadow: 0px 0px 5px rgba(231, 173, 134, 1);
+}
+
+
+#createAccount-form span a{
+    color: #c3c0c0;
+    text-decoration: none;
+}
+#createAccount-form span a:hover{
+    text-decoration: underline;
+}
+#show-pass{
+    width:15px ;
+    font-size: 20px;
+    margin-right: 7px;
+}
+
+#createAccountButton{
+    width: 100%;
+    padding: 4px 0px;
+    font-size: 16px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-color: #e7ad86;
+    outline: none;
+    cursor: pointer;
+}
+#createAccountButton:hover{
+    background-color:  #99d0ff;
+}
+#createAccount-form p{
+    font-size: 14px;
+    padding: 10px 0px;
+}
+#already-account-in-createAccount-form{
+    width: 100%;
+    text-align: center;
+    padding-top: 3px;
+}
+#already-account-in-createAccount-form a{
+    text-decoration: none;
+    color: #99d0ff;
+    
+}
+#already-account-in-createAccount-form h1{
+    font-size: 14px;
+    display: inline;
+}
+#already-account-in-createAccount-form a:hover{
+    text-decoration: underline;
+}
+
+#errors{
+    width: 100%;
+    padding-top: 13px;
+}
+
+h4{
+    text-align: center;
+    color: red;
+}
+
+form #truckOption{
+    display: none;
+}
+#div-inside-select-trucks a{
+    text-decoration: none;
+}
+form #div-inside-select-trucks a:hover{
+    text-decoration: none;
+}
+form #div-inside-select-trucks button{
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+    color: black;
+    font-size: 16px;
+    text-overflow: ellipsis;
+}
+form #div-inside-select-trucks ul{
+    width: 100%;
+}

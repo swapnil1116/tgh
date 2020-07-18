@@ -1,0 +1,49 @@
+extends baseDashboardForConsignee.pug
+block style
+    link(rel='stylesheet', href='../static/style/dashboardStyle.css')
+    link(rel='stylesheet', href='../static/style/viewBiddingsStyle.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
+block content
+      section#main-section
+        h1#dashboard-heading This Auction
+        .all-auctions
+            .inside-all-auctions Pick Up City: 
+              span #{thisAuction.pickUpCity}
+            .inside-all-auctions Drop City:  
+              span #{thisAuction.dropCity}
+            .inside-all-auctions Load: 
+              span #{thisAuction.load}
+            .inside-all-auctions Items: 
+              span #{thisAuction.item}
+            .inside-all-auctions Truck: 
+              span #{thisAuction.truck}
+            .inside-all-auctions Date Of Shipping: 
+              span #{thisAuction.datepicker}
+            .inside-all-auctions Your Budget: 
+              span ₹#{thisAuction.budget}
+
+        for AllBidding in AllBiddings
+            .all-auctions 
+                .inside-all-auctions Carrier Name:
+                    span #{AllBidding.truckOwnersName}
+                .inside-all-auctions   Carriers Bid:
+                    span  ₹#{AllBidding.truckOwnersBid}
+                .inside-all-auctions 
+                  .divs-containing-input
+                    a.delete-auction.buttonLink Accept This Bid
+                    section.delete-auction-section
+                          h1
+                            | Are You Sure Wanna Accept This Bid?
+                          .divs-containing-input
+                            a.buttonLink(href='/acceptBid/' + AllBidding._id) Yes, I wanna accept this Bid
+                          .divs-containing-input
+                            a.doNotDeleteAuction.buttonLink No                        
+block script
+  script(src='../static/script/dashboardScript.js')
+  //- script. 
+  //-           setInterval(function() {
+  //-                 console.log("reloaded")
+  //-                 location.reload();
+  //-           }, 10000);              

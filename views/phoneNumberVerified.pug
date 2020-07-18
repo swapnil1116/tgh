@@ -1,0 +1,20 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Mishra Ecommerce Website
+  link(rel='stylesheet' href='../static/style/homeStyle.css')
+  link(rel='stylesheet' href='../static/style/otpSend.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap' rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  section#otp-section
+    #inside-otp-section
+      #otp-heading
+        h1 Registeration Successfull
+        p#otp-para Your Mobile Number is successfully registered to &quot;Our Logistics&apos;s&quot; 
+      form#otp-form(action='/authenticationDone' method="post")
+        div
+          input#otpButton(type='submit' value='OK')
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')

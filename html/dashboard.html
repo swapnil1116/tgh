@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/style/dashboardStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <section id="complete-wrapper-of-page"></section>
+    <nav id="navbar">
+        <div id="navbar-overlay"></div>
+        <div id="inside-navbar">    
+            <div id="logo">
+                <h1>Our &nbsp;Logistics </h1>
+            </div>
+            <div id="nav-contents">
+                <ul>
+                    <li class="nav-list-items">
+                        <a href="" id="new-auction-button">
+                            <span>+</span>
+                            Open New Auction 
+                        </a>
+                    </li>
+                    <li class="nav-list-items">
+                        <a  id="menu">Menu
+                            <i class="fa fa-angle-down arrow-down arrow-in-shop-login"></i>    
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>    
+    </nav>
+    <div id="sidebar-main-section-wrapper">
+        <section id="sidebar">
+            <ul class="ul-inside-sidebar">
+                <li><a href="/customer/dashboard" class="links-inside-sidebar">Dashboard</a></li>
+                <li><a href="" class="links-inside-sidebar">Booking History</a></li>
+                <li><a href="" class="links-inside-sidebar">Payment</a></li>
+                <li><a href="" class="links-inside-sidebar">Tracking</a></li>
+                <li><a href="" class="links-inside-sidebar">Calculator</a></li>
+                <li><a href="" class="links-inside-sidebar">Book by TrucGo</a></li>
+            </ul>
+            <ul class="ul-inside-sidebar">
+                <li><a href="" class="links-inside-sidebar">Setting</a></li>
+                <li><a href="" class="links-inside-sidebar">Support</a></li>
+                <li><a href="/logout" class="links-inside-sidebar">Log Out</a></li>
+            </ul>
+        </section>
+        <section id="main-section">
+            <h1 id="dashboard-heading">Current Auction</h1>
+            <div id="all-auctions">
+                <div class="inside-all-auctions">Pick Up City: </div>
+                <div class="inside-all-auctions">Drop City: </div>
+                <div class="inside-all-auctions">Load: </div>
+                <div class="inside-all-auctions">Items: </div>
+                <div class="inside-all-auctions">Truck: </div>
+                <div class="inside-all-auctions">Date Of Shipping: </div>
+                <div class="inside-all-auctions">Your Budget: </div>
+            </div>
+        </section>
+        <section id="delete-auction-section">
+            <h1>
+                Are You Sure Wanna Delete This Auction?
+            </h1>
+            <div class="divs-containing-input">
+                <a href="/deleteAuction/" + auction._id" class="buttonLink">Yes, Delete This Auction</a>
+            </div> 
+            <div class="divs-containing-input">
+                <a href="" class="buttonLink">No, Don't Delete This Auction</a>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- HOVER ON OUR COMPANY IN BUTTON -->
+    <section id="hover-on-menu">
+        <div class="div-inside-section-of-navbar-links">
+            <div id="arrow">
+                <div class="arrow-up"></div>
+            </div>    
+            <div class="Allitems-ofdiv-inside-section-of-navbar-links">
+                <ul id="list-of-hoverMenu">
+                    <a href="" class="item-hoverMenu">
+                        <li>Help Center</li>
+                    </a>
+                    <a href="/logout" class="item-hoverMenu">
+                       <li id="lastItemOfHoverMenu">Contact Us</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="../static/script/dashboardScript.js"></script>
+</body>
+</html>

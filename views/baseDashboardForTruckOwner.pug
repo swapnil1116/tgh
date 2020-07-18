@@ -1,0 +1,61 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Dashboard
+    block style
+        link(rel='stylesheet', href='../static/style/dashboardStyle.css')
+        link(rel='stylesheet', href='../static/style/viewBiddingsStyle.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
+  body
+    nav#navbar
+      #navbar-overlay
+      #inside-navbar
+        #logo
+          h1 Our  Logistics 
+        #nav-contents
+          ul
+            li.nav-list-items
+              a#new-auction-button(href='/carrier/pendingBids')
+                | Pending Bids
+            li.nav-list-items
+              a#menu
+                | Menu
+                i.fa.fa-angle-down.arrow-down.arrow-in-shop-login
+    #sidebar-main-section-wrapper
+        section#sidebar
+            ul.ul-inside-sidebar
+                li
+                    a#username.links-inside-sidebar Hello, #{user.name}
+                li
+                    a.links-inside-sidebar(href='/customer/dashboard') Dashboard
+                li
+                    a.links-inside-sidebar(href='/currentBookings') Current Booking
+                li
+                    a.links-inside-sidebar(href='') Payment
+                li
+                    a.links-inside-sidebar(href='') Calculator
+            ul.ul-inside-sidebar
+                li
+                    a.links-inside-sidebar(href='') Setting
+                li
+                    a.links-inside-sidebar(href='') Support
+                li
+                    a.links-inside-sidebar(href='/logout') Log Out
+        block content    
+    // HOVER ON OUR COMPANY IN BUTTON
+    section#hover-on-menu
+      .div-inside-section-of-navbar-links
+        #arrow
+          .arrow-up
+        .Allitems-ofdiv-inside-section-of-navbar-links
+          ul#list-of-hoverMenu
+            a.item-hoverMenu(href='')
+              li Help Center
+            a.item-hoverMenu(href='/logout')
+              li#lastItemOfHoverMenu Contact Us
+    block script          
+        script(src='../static/script/dashboardScript.js')

@@ -1,0 +1,105 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Our Logistics
+    style.
+      #div-inside-select-trucks label{
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      }
+      #div-inside-select-trucks label img{
+      margin: 0 10px;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      background-color: #337ab7;
+      }
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')  
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='../static/style/createAccountStyle.css')
+    link(rel='stylesheet', href='../static/style/homeStyle.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
+  body
+    - var user = {AllErrors:AllErrors, name: name , email:emailAddress,mobileNumber:mobileNumber}
+    section#createAccount-section
+      #inside-createAccount-section
+        #createAccount-heading
+          h1 Create Account
+        include partial/flash-messages.pug 
+        form#createAccount-form(action="/createAccount", method="post")
+          div
+            label.label-inside-form(for="name") Your name
+            br
+            if (user.AllErrors).length>0  
+              input#name.input-inside-form(type="text" name="name" value=user.name )
+            else  
+              input#name.input-inside-form(type="text" name="name" value=user.name autofocus="")
+          div
+            label.label-inside-form(for="mobileNumber") Your Mobile Number
+            input#email-address.input-inside-form(type="text" value=user.MobileNumber name="mobileNumber")
+          div
+            label.label-inside-form(for="emailAddress") Email Address(optional)
+            input#mobile-number.input-inside-form(type="email" value=user.email name="emailAddress")
+          div  
+            label.label-inside-form(for='car') You are:
+            select#occupation.input-inside-form(name='occupation')
+              option(value='A Carrier') A Carrier 
+              option(value='A consigner') A Consigner
+              option(value="choose" selected="") Choose
+          div#truckOption  
+            label.label-inside-form(for='trucks') Select the trucks you own
+            #div-inside-select-trucks
+              select#trucks.input-inside-form(name='trucks[]'  multiple='')
+                option(value='Eicher 14 ft 3.5 Ton' data-img='../static/img/truck1.png') Eicher 14 ft 3.5 Ton 
+                option(value='Eicher 19 ft 7 Ton' data-img='../static/img/truck3.png') Eicher 19 ft 7 Ton
+                option(value='Eicher 17 ft 5 Ton' data-img='../static/img/truck2.png') Eicher 17 ft 5 Ton
+                option(value='20 ft closed container 6.5 Ton' data-img='../static/img/truck4.png') 20 ft closed container 6.5 Ton
+                option(value='6 wheel 9 Ton' data-img='../static/img/truck5.png') 6 wheel 9 Ton
+                option(value=' 10 wheel 16 Ton' data-img='../static/img/truck6.png') 10 wheel 16 Ton
+                option(value=' 12 wheel 16 Ton' data-img='../static/img/truck7.png')  12 wheel 16 Ton
+                option(value='14 wheel 16 Ton' data-img='../static/img/truck8.png')  14 wheel 16 Ton
+                option(value='32 ft single axle 7 Ton' data-img='../static/img/truck9.png')  32 ft single axle 7 Ton
+                option(value='32 feet multi axle 14.5 Ton' data-img='../static/img/truck10.png')  32 feet multi axle 14.5 Ton
+                option(value='20 feet trailer 16 Ton' data-img='../static/img/truck11.png')  20 feet trailer 16 Ton
+          div
+            label.label-inside-form(for="password") Create Password
+            input#password.input-inside-form(type="password"  name="password")
+          div
+            label.label-inside-form(for="password") Re-enter Password
+            input#password2.input-inside-form(type="password"  name="password2")
+         
+          div
+            p We will send you an OTP to verify your Mobile Number.
+          div
+            input#createAccountButton(type="submit" value="Continue")
+        #already-account-in-createAccount-form
+          h1 Already have an account?&nbsp;
+          a(href="/login")
+            h1 Login
+script.
+    $(document).ready(function() {
+        $('#trucks').multiselect({
+        nonSelectedText:"Select Trucks",
+        enableFiltering:true,
+        enableCaseInsensitiveFiltering:true,
+        enableHTML:false,
+        maxHeight:450,
+        buttonWidth:"100%",
+        allSelectedText: 'All Trucks Selected...',
+        numberDisplayed:0,
+        filterPlaceholder: 'Search Trucks...',
+        enableHTML: true,
+        optionLabel: function(element) {
+        return '<img src="' + $(element).attr('data-img') + '"> ' + $(element).text();
+        }
+        });
+    });          
+script(src="../static/script/createAccountScript.js")
+script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')

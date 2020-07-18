@@ -1,0 +1,42 @@
+extends baseDashboardForConsignee.pug
+block style
+    link(rel='stylesheet', href='../static/style/dashboardStyle.css')
+    link(rel='stylesheet', href='../static/style/viewBiddingsStyle.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
+
+block content
+      section#main-section
+        h1#dashboard-heading Your Auctions
+        for auction in UserAuctions
+          .all-auctions
+            .inside-all-auctions Pick Up City: 
+              span #{auction.pickUpCity}
+            .inside-all-auctions Drop City:  
+              span #{auction.dropCity}
+            .inside-all-auctions Load: 
+              span #{auction.load}
+            .inside-all-auctions Items: 
+              span #{auction.item}
+            .inside-all-auctions Truck: 
+              span #{auction.truck}
+            .inside-all-auctions Date Of Shipping: 
+              span #{auction.datepicker}
+            .inside-all-auctions Your Budget: 
+              span ₹#{auction.budget}
+            .inside-all-auctions 
+              .divs-containing-input
+                a.buttonLink(href="/viewBids/" + auction._id) View All Bids
+            .inside-all-auctions 
+              .divs-containing-input
+                a.delete-auction Delete Auction
+                section.delete-auction-section
+                      h1 Are You Sure Wanna Delete This Auction?
+                      .divs-containing-input
+                        a.buttonLink(href='/deleteAuction/' + auction._id) Yes, Delete This Auction
+                      .divs-containing-input
+                        a.doNotDeleteAuction.buttonLink No, Don't Delete This Auction
+          
+block script          
+          script(src='../static/script/dashboardScript.js')

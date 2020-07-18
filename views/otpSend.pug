@@ -1,0 +1,35 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Mishra Ecommerce Website
+  link(rel='stylesheet' href='../static/style/homeStyle.css')
+  link(rel='stylesheet' href='../static/style/otpSend.css')
+  link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap' rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap' rel='stylesheet')
+  
+  - var user = {errors}
+  - var errors=user.errors
+section#otp-section
+  #inside-otp-section
+    #otp-heading
+      h1 Authentication required
+      p#otp-para
+        | One Time Password (OTP) sent to #{otp_send_to_mobileNumber}. Please enter it below to complete verification.
+      include partial/flash-messages.pug          
+    //- include partial/flash-messages.pug      
+    form#otp-form(action='/authenticate' method="post")
+      div
+        label.label-inside-form(for='otp') Enter OTP
+        br
+        input#otp.input-inside-form(type='text' name='otp' autofocus='')
+      div
+        input#otpButton(type='submit' value='Continue')
+    #new-user-in-otp-form
+      a(href='/resend-otp')
+        h1 Resend OTP
+script(src="../static/script/createAccountScript.js")
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous')

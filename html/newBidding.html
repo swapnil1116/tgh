@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Auction</title>
+    <link rel="stylesheet" href="../static/style/newBiddingStyle.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- FOR TRUCKS SELECTION -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section id="bidding-section">
+        <div id="heading">
+           <h1> Create a New Auction</h1>
+        </div>
+        <form action="/newBidding" method="POST">
+            <div class="divs-containing-input">
+                    <label class="label-inside-form" for="pick-up-city">Select Pick up City:</label>
+                    <div class="input-div">
+                        <select class="input-inside-form" id="pick-up-city" name="pick-up-city">
+                            <option value="" selected="" >Pick Up City </option>
+                            <option value="Eicher 14 ft 3.5 Ton" >Jabalpur </option>
+                            <option value="Eicher 19 ft 7 Ton" >Bhopal</option>
+                            <option value="Eicher 17 ft 5 Ton" >Gwalior</option>
+                            <option value="20 ft closed container 6.5 Ton" >Indore</option>
+                            <option value="6 wheel 9 Ton" >Chhindwara</option>
+                            <option value=" 10 wheel 16 Ton" >Narsinghpur</option>
+                            <option value=" 12 wheel 16 Ton" > Seoni</option>
+                            <option value="14 wheel 16 Ton" > Katni</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="divs-containing-input">
+                <label class="label-inside-form" for="pick-up-city">Select Drop City:</label>
+                <div class="input-div">
+                    <select class="input-inside-form" id="pick-up-city" name="pick-up-city">
+                        <option value="Eicher 14 ft 3.5 Ton" >Jabalpur </option>
+                        <option value="Eicher 19 ft 7 Ton" >Bhopal</option>
+                        <option value="Eicher 17 ft 5 Ton" >Gwalior</option>
+                        <option value="20 ft closed container 6.5 Ton" >Indore</option>
+                        <option value="6 wheel 9 Ton" >Chhindwara</option>
+                        <option value=" 10 wheel 16 Ton" >Narsinghpur</option>
+                        <option value=" 12 wheel 16 Ton" > Seoni</option>
+                        <option value="14 wheel 16 Ton" > Katni</option>
+                        <option value="" selected="" >Drop City </option>
+                    </select>
+                </div>
+            </div>
+            <div class="divs-containing-input">
+                <label class="label-inside-form" for="service">Select Load: </label>
+                <div class="input-div">
+                    <select class="input-inside-form" name="load" id="load">
+                        <option value="1">Full Truck Load( Above 3000 kg)</option>
+                        <option value="2">Part Truck Load( 500-3000 KG)</option>
+                        <option value="3">Parcel( less than 500 Kg)</option>
+                        <option value="" selected="" >Select Load </option>
+                    </select>
+                </div>
+            </div>
+            <div class="divs-containing-input">
+                <label class="label-inside-form" for="item">Select Item: </label>
+                <div class="input-div">
+                    <select class="input-inside-form" name="item" id="item" multiple="multiple">
+                        <option value="1">Machinery & spare parts</option>
+                        <option value="2">Electronic</option>
+                        <option value="3">Building materials</option>
+                        <option value="4">Medicine</option>
+                        <option value="5">Household Goods</option>
+                        <option value="6">Food & Agriculture Products</option>
+                        <option value="7">Perishable goods</option>
+                        <option value="" selected="" >Select Your Item </option>
+                    </select>
+                </div>
+            </div>
+            <div class="divs-containing-input">
+                <label class="label-inside-form"  for="truck">Select the truck you need:</label>
+                <div class="input-div">
+                    <select class="input-inside-form " id="truck" name="truck"  >
+                        <option value="1" data-img="../static/img/truck1.png">Eicher 14 ft 3.5 Ton </option>
+                        <option value="3" data-img="../static/img/truck2.png">Eicher 17 ft 5 Ton</option>
+                        <option value="2" data-img="../static/img/truck3.png">Eicher 19 ft 7 Ton</option>
+                        <option value="4" data-img="../static/img/truck4.png">20 ft closed container 6.5 Ton</option>
+                        <option value="6" data-img="../static/img/truck5.png">6 wheel 9 Ton</option>
+                        <option value="7" data-img="../static/img/truck6.png">10 wheel 16 Ton</option>
+                        <option value="8" data-img="../static/img/truck7.png"> 12 wheel 16 Ton</option>
+                        <option value="9" data-img="../static/img/truck8.png"> 14 wheel 16 Ton</option>
+                        <option value="10" data-img="../static/img/truck9.png"> 32 ft single axle 7 Ton</option>
+                        <option value="11" data-img="../static/img/truck10.png"> 32 feet multi axle 14.5 Ton</option>
+                        <option value="12" data-img="../static/img/truck11.png"> 20 feet trailer 16 Ton</option>
+                        <option value="" selected="" >Select Truck </option>
+                    </select>
+                </div>
+            <div class="divs-containing-input">
+                <label for="datepicker" class="label-inside-form" >Date Of Shipping:</label>
+                <div class="input-div">
+                    <input  name="datepicker" data-date-format="dd/mm/yyyy" id="datepicker">
+                </div>
+            </div>
+            <div class="divs-containing-input">
+                <label for="budget" class="label-inside-form" >Your Budget: </label>
+                <div class="input-div">
+                    <input  name="budget" type="number" id="budget">
+                </div>
+            </div>
+
+            <div class="divs-containing-input">
+                <button type="submit" id="create-auction-button">Create Auction</button>
+            </div>
+        </form>
+    </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+<script>
+    $('#datepicker').datepicker({
+        weekStart: 1,
+        autoclose: true,
+        todayHighlight: true,
+        orientation: "bottom left"
+    });
+    $('#datepicker').datepicker("setDate", new Date());
+
+    $(document).ready(function () {
+      $('select').selectize({
+          sortField: 'text',
+      });
+    });
+
+</script>
+</body>
+</html>
