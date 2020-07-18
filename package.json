@@ -4,6 +4,7 @@
   "description": "This is our logistics",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js"
     "dev": "nodemon app"
   },
   "author": "Satyam Mishra",
