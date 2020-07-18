@@ -2,11 +2,17 @@
 
 const express=require("express");
 const path=require("path")
-const mongoose = require('mongoose');
 const bcrypt=require("bcrypt")
 const passport=require("passport")
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://satyammishra:satyam@121212@cluster0.y2msr.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 // mongoose.connect(uri || 'mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
 const session=require("express-session");
 const flash=require("connect-flash")
