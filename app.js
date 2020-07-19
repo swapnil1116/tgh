@@ -187,16 +187,6 @@ app.post("/",redirectLoggedin,(req,res)=>{
     }    
 })
 
-app.use (function (req, res, next) {
-    if (req.secure) {
-            // request was via https, so do no special handling
-            next();
-    } else {
-            // request was via http, so redirect to https
-            res.redirect('https://' + req.headers.host + req.url);
-    }
-});
-
 app.get("/createAccount",redirectLoggedin,(req,res)=>{
     AllErrors=[]
     res.render("createAccount",{AllErrors})
