@@ -186,6 +186,9 @@ app.post("/",redirectLoggedin,(req,res)=>{
         })
     }    
 })
+app.get('*', function(req, res) {
+    res.redirect('/#' + req.originalUrl);
+});
 app.get("/createAccount",redirectLoggedin,(req,res)=>{
     AllErrors=[]
     res.render("createAccount",{AllErrors})
