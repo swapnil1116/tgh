@@ -186,9 +186,16 @@ app.post("/",redirectLoggedin,(req,res)=>{
         })
     }    
 })
-app.get('*', function(req, res) {
-    res.redirect('/#' + req.originalUrl);
-});
+var http = express.createServer();
+
+// set up a route to redirect http to https
+http.get('*', function(req, res) {  
+    res.redirect('https://' + req.headers.host + req.url);
+
+    // Or, if you don't want to automatically detect the domain name from the request header, you can hard code it:
+    // res.redirect('https://example.com' + req.url);
+})
+
 app.get("/createAccount",redirectLoggedin,(req,res)=>{
     AllErrors=[]
     res.render("createAccount",{AllErrors})
