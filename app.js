@@ -30,6 +30,14 @@ const myMongoStore = new MongoDBStore({
 // INITIALIZING APP WITH EXPRESS()
 const app=express();
 
+// FOR POST REQUESTS SECURITY
+var http = require('http');
+var enforce = require('express-sslify');
+
+// Use enforce.HTTPS({ trustProtoHeader: true }) since you're behind Heroku's reverse proxy
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
+
 // PASSPORT LOCAL STARTEGY FROM CONFIG FILE
 require("./config/passport")(passport);
 // ENVIRONMENT VARIABLES
