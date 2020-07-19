@@ -186,7 +186,6 @@ app.post("/",redirectLoggedin,(req,res)=>{
         })
     }    
 })
-var http = express.createServer();
 
 // set up a route to redirect http to https
 http.get('*', function(req, res) {  
