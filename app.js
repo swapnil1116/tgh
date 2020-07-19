@@ -22,7 +22,7 @@ const flash=require("connect-flash")
 const  MongoDBStore = require('connect-mongodb-session')(session);
 // INITIALIZING MONGOSTORE
 const myMongoStore = new MongoDBStore({
-    uri: 'mongodb://localhost/OurLogistics',
+    uri: "mongodb+srv://satyammishra:satyam121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority",
     collection: 'mySessions'
 });
 
