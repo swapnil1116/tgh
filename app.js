@@ -6,7 +6,7 @@ const bcrypt=require("bcrypt")
 const passport=require("passport")
 const mongoose=require("mongoose")
 const bodyParser = require('body-parser');
-
+const sslRedirect = require('heroku-ssl-redirect');
 const uri="mongodb+srv://satyammishra:satyam121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority"
 // const client = new MongoClient(uri, { useNewUrlParser: true  , useUnifiedTopology:true});
 mongoose.connect(uri, {
@@ -30,13 +30,8 @@ const myMongoStore = new MongoDBStore({
 // INITIALIZING APP WITH EXPRESS()
 const app=express();
 
-// FOR POST REQUESTS SECURITY
-var http = require('http');
-var enforce = require('express-sslify');
-
-// Use enforce.HTTPS({ trustProtoHeader: true }) since you're behind Heroku's reverse proxy
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
-
+// enable ssl redirect
+app.use(sslRedirect());
 
 // PASSPORT LOCAL STARTEGY FROM CONFIG FILE
 require("./config/passport")(passport);
