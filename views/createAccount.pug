@@ -32,7 +32,7 @@ html(lang='en')
         #createAccount-heading
           h1 Create Account
         include partial/flash-messages.pug 
-        form#createAccount-form(action="/createAccount", method="post")
+        form#createAccount-form(action="/createAccount", method="post" , enctype="application/x-www-form-urlencoded")
           div
             label.label-inside-form(for="name") Your name
             br

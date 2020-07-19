@@ -5,7 +5,9 @@ const path=require("path")
 const bcrypt=require("bcrypt")
 const passport=require("passport")
 const mongoose=require("mongoose")
-const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 const uri="mongodb+srv://satyammishra:satyam121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority"
 // const client = new MongoClient(uri, { useNewUrlParser: true  , useUnifiedTopology:true});
 mongoose.connect(uri, {
