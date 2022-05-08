@@ -30,7 +30,7 @@ const app=express();
 require("./config/passport")(passport);
 // ENVIRONMENT VARIABLES
 const{
-    PORT = process.env.PORT || 8000,
+    PORT = process.env.PORT || 3000,
     NODE_ENV="development",
     session_Name="mySession",
     session_Secret="mySecret",
