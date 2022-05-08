@@ -6,11 +6,41 @@
     --primary-color:#143d59;
     --secondary-color:#f4b41a;
 }
+body{
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+    overflow-x: hidden;
+}
+.no-scrolling{
+    overflow-y: hidden;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+/* ANIMATION RELATED STUFF */
+
+html:not(.no-js) [data-aos=fade-left]{
+    -webkit-transform: translate3d(-100%,0,0);
+    transform: translate3d(-100%,0,0);
+}
+html:not(.no-js) [data-aos=fade-right]{
+    -webkit-transform: translate3d(100%,0,0);
+    transform: translate3d(100%,0,0);
+    
+}
+html:not(.no-js) [data-aos=fade-up]{
+    -webkit-transform: translate3d(0,30%,0);
+    transform: translate3d(0,30%,0);
+    
+}
 
 /* THIS IS FOR THE OUTERMOST LAYER  */
-#outermost{
-    z-index: 2;
+.outermost{
     position: fixed;
+}
+#outermost1{
+    z-index: 4;
 }
 .shadowing{
     top: 0;
@@ -18,22 +48,27 @@
     width: 100%;
     background-color: black;
     opacity: 0.6;
-    
+    height: 2999px;
 }
+/* TO HIDE THE SIDEBAR IN COMPUTER SCREENS */
+.sidebar-section {
+    display: none;
+}
+
+/* NAVBAR FROM HERE */
 #navbar{
     display: flex;
     justify-content: space-around;
     position: sticky;
     top: 0;
-    z-index: 1;
     height: 75px;
-
+    z-index: 2;
 }
 #inside-navbar{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 80vw;
+    width: 100%;
 }
 #navbar-overlay{
     position: absolute;
@@ -47,12 +82,24 @@
 }
 #navbar #inside-navbar #logo{
     font-family: 'Mr Dafoe';
-    font-size: 23px;
+    font-size: 1.45rem;
     color: var(--primary-color);
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    width: 30%;
+}
+.logo-image{
+    height: 84%;
+    width: 37%;
+    
+}
+.bars{
+    display: none;
 }
 
-
-#navbar ul{
+#nav-contents>ul{
     display: flex;
     align-items: center;
     transition: 3s all ease;
@@ -61,18 +108,88 @@
 #navbar ul .nav-list-items{
     list-style: none;
     color: #fcfcfc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#navbar ul .nav-list-items a{
+#navbar ul .nav-list-items>a{
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.25rem;
     text-decoration: none;
     font-family: 'Fredoka One', cursive;
     color: var(--primary-color);
-    padding: 15px 7px;
-    margin: 0px 12px;
+    padding: 0.97rem 0.48rem;
+    margin: 0px 0.75rem;
+    display: flex;
 }
-#navbar ul .nav-list-items #signin-button{
+#navbar ul .nav-list-items>a .arrows-in-main-navbar{
+    width: 34px;
+    text-align: center;
+    font-size: 28px;
+    transition: transform 0.4s;
+}    
+.anchor-inside-li-in-navbar-without-any-other-links{
+    color: var(--secondary-color);
+}
+
+#navbar ul .nav-list-items .class-for-color-in-main-navbar{
+    color: var(--secondary-color);
+}
+#navbar ul .nav-list-items .arrow-up-inside-main-navbar{
+    transform: rotate(180deg);
+}
+.list-of-items-inside-services-and-others{
+    position: absolute;
+    visibility: hidden;
+    margin-top: 20px;
+    top: 51px;
+    z-index: 9999;
+    opacity: 1;
+    border-radius: 10px;
+    background-color: rgb(59, 209, 255);
+}
+.visibility-class-in-main-navbar{
+    opacity: 1;
+    margin-top: 9px;
+    visibility: visible;
+    transition-property: margin-top, opacity, top, visibility;
+    transition-duration: 0.2s;
+    z-index: 9999;
+}
+.list-of-items-inside-services-and-others>li{
+    list-style: none;
+}
+.list-of-items-inside-services-and-others>li>a{
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    color: var(--primary-color);
+    font-size: 21px;
+    font-family: 'Slabo 27px', serif;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.list-of-items-inside-services-and-others>li>a:hover{
+    background-color: var(--secondary-color);
+}
+.list-of-items-inside-services-and-others::after{
+    content: "";
+    display: block;
+    width: 14px;
+    height: 14px;
+    background-color: rgb(59, 209, 255);
+    position: absolute;
+    transform: scaleX(.75) rotate(45deg);
+    border-width: 0;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    transform: scaleY(0.9) rotate(-136deg);
+    right: 50%;
+    top: -6px;
+    z-index: -1;
+}
+#nav-contents .nav-list-items .signin-button{
     background-color: var(--secondary-color);
     color: white;
     border: 1px solid black;
@@ -80,145 +197,22 @@
     border-radius: 10px;
     transition: 0.2s all;
 }
-#navbar ul .nav-list-items #signin-button:hover{
+#nav-contents .nav-list-items .signin-button:hover{
     border: 1px solid black;
     color: var(--secondary-color);
     background-color: var(--primary-color);
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-    
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19); 
 }
 
 #navbar ul .nav-list-items #search-icon-navbar{
     padding-right: 0;
     margin-right: 0;
 }
-
-/* THIS IS THE DIV FOR SEARCH BAR INPUT */
-#div-for-search{
-    z-index: 3;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    display: none;
-    height: 75px;
-    position: fixed;
-    background-color: white;
-    top: 0px;
-}
-#div-inside-search-div{
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    width: 80vw;
-
-}
-#navbar-search{
-    width: 95%;
-    font-size: 30px;
-    outline: none;
-    border: none;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-#cross-navbar-search{
-    font-size: 30px;
-    padding: 15px ;
-    cursor: pointer;
-}
-
-
-
-/* HOVER ON NAVBAR LINKS */
-#hover-on-company{
-    display: none;
-    z-index: 3;
-    position: fixed;
-    top: 60px;
-    right: 42.5rem;
-    width: 16vw;
-    background-color: #d8faff;
-    transition: display 5s  ease;
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: all 5s ;
-    /* height: 35vh; */
-    transition: height 5s 0.5s ;
-}
-#hover-on-home{
-    display: none;
-    position: fixed;
-    z-index: 3;
-    top: 60px;
-    right: 32.9rem;
-    width: 16vw;
-    background-color: #d8faff;
-    transition: display 5s  ease;
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: all 5s ;
-    transition: height 5s 0.5s ;
-}
-
-
-#arrow{
-    position: absolute;
-    top: -15px;
-}
-.arrow-up {
-    width: 0px;
-    height: 5px;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #d8faff;
-  }
-
-.div-inside-section-of-navbar-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px 0px;
-}
-.Allitems-ofdiv-inside-section-of-navbar-links{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.Allitems-ofdiv-inside-section-of-navbar-links ul{
-    display: flex;
-    list-style:none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-.item-hoverShop{
-    text-decoration: none;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-.item-hoverShop li{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: 12px 0px;
-    border-bottom: 1px solid #6fe4f5;
-    color: var(--primary-color);
-    font-family: 'Fredoka One', cursive;
-    font-size: 17px;
-}
-.item-hoverShop li:hover{
-    background-color: var(--secondary-color);
-}
-
-#lastItemOfHoverShop{
-    border-bottom: none;
-}
-
-
 /* MAIN SECTION FROM HERE */
 #main-section-overlay{
     width: 100%;
-    height: 85vh;
-    position: absolute;
+    height: 100%;
+    position: fixed;
     background-color: black;
     top: 75px;
     left: 0;
@@ -235,17 +229,16 @@
 }
 #main-section #heading-inside-main-section{
     width: 47%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-family: 'Arvo', serif;
     color: var(--primary-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 #heading-inside-main-section h1{
-    font-size: 3vw;
+    font-size: 5vw;
     padding-bottom: 1rem;
 }    
 #heading-inside-main-section h3{
@@ -257,8 +250,9 @@
     content:"";
     position: fixed;
     background: url(../img/bg1.jpg) no-repeat;
-    background-position: bottom;
-    background-size: 100%;
+    background-position: top;
+    background-size: 100% 100%;
+    object-fit: cover;
     width: 100%;
     z-index: -1;
     height: 100%;
@@ -271,13 +265,14 @@
     justify-content: center;
     align-items: center;
 }
-#main-buttons button{
-    width: 166px;
+#main-buttons a{
+    text-decoration: none;
+    width: 12rem;
     margin: 0px 25px;
     padding: 10px 20px;
     background: linear-gradient(to right, #a38236, var(--secondary-color));
-    color:#ffffff;
-    font-size: 17px;
+    color: #ffffff;
+    font-size: 1.1rem;
     margin-top: 40px;
     border: 1px solid rgb(32, 76, 97);
     border-radius: 20px;
@@ -285,10 +280,10 @@
     cursor: pointer;
     font-weight: 900;
     transition: transform 0.15s ease-in;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Slabo 27px', serif;
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#main-buttons button:hover{
+#main-buttons a:hover{
     border: 1px solid var(--primary-color);
     color: var(--secondary-color);
     background: var(--primary-color);
@@ -296,11 +291,7 @@
 }
 
 
-#deleteMe{
-    border: 1px solid red;
-    height: 1500px;
-    background-color: rebeccapurple;
-}
+/* PHONE CALL SYMBOL FORM HERE */
 #phone-call{
     position: fixed;
     top: 84vh;
@@ -357,19 +348,23 @@
 #heading-inside-why-us-section h1{
     font-size: 3rem;
     color: var(--primary-color);
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+    font-family: 'Arvo', serif;
 } 
 #All-points-of-why-us-section{
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 .point-of-why-us-section{
-    
     background-color: #ffffff;
+    padding: 1rem 0;
     margin: 2.5rem 0;
     transition: 0.3s all;
-    width: 60vw;
-    height: 290px;
+    width: 55rem;
+    height: 18rem;
     border-radius: 25px;
     box-shadow: 0 0 8px rgba(33, 33, 33, 0.05);
     cursor: pointer;
@@ -378,7 +373,12 @@
     align-items: center;
     color: var(--primary-color);
 }
-.point-of-why-us-section div{
+.point-of-why-us-section .divs-inside-point-of-why-us-section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.point-of-why-us-section>div{
     padding: 0 1rem;
 }
 .point-of-why-us-section:hover{
@@ -386,20 +386,26 @@
     box-shadow: 0 4px 26px 0 rgba(6, 6, 6, 0.28), 0 0 0 transparent;
 }
 .image-inside-point-of-why-us-section{
-    width: 25%;
+    width: 45%;
     height: 70%;
 }
 .image-inside-point-of-why-us-section img{
     width: 100%;
     height:  100%;
 }
+.percent-inside-point-of-why-us-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .percent-inside-point-of-why-us-section h6{
     font-size: 2rem;
     font-family: 'Fredoka One', cursive;
     font-weight: 100;
+    text-align: center;
 }
 .percent-inside-point-of-why-us-section h1{
-    font-size: 6rem;
+    font-size: 5rem;
     font-family: 'Fredoka One', cursive;
     font-weight: 100;
 }
@@ -412,31 +418,35 @@
 .topic-inside-why-us-section{
     font-family: 'Fredoka One', cursive;
     font-size: 2rem;
+    text-align: center;
 }
 .list-items-inside-keypoints-of-why-us-section{
     font-size: 1.2rem;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Slabo 27px', serif;
+    font-weight: 700;
 }
 .keypoints-inside-why-us-section h6{
-    opacity: 0.36;
+
     font-size: 1.5rem;
     font-family: 'Fredoka One', cursive;
     font-weight: 100;
+}
+#sign-in-try-now-buttons-in-mobile-screen{
+    display: none;
 }
 
 
 /* FOOTER FROM HERE */
 footer{
     background-color: #185478;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    padding: 40px 0 40px 0;
+    font-family: 'Slabo 27px', serif;
+    font-weight: 700;
+    padding: 42px 0 42px 0;
     margin-bottom: 500px;
-
 }
 
 footer #main-div-inside-footer{
@@ -460,7 +470,7 @@ footer #main-div-inside-footer{
     font-size: 25px;
     font-family: 'Fredoka One', cursive;
     font-weight: 100;
-    opacity: 0.6;
+
 }
 footer .div-with-links{
     display: flex;
@@ -483,9 +493,10 @@ footer .div-with-links a:hover{
 /* BELOW FOOTER SECTION STARTS FROM HERE */
 #below-footer-section{
     display: none;
-    width: 99vw;
+    width: 100vw;
     height: 500px;
     background-color:#263867;
+    border-top: 1px solid #263867;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -517,6 +528,7 @@ footer .div-with-links a:hover{
 
 .divs-inside-subscribe-email{
     margin: 15px 0px 0 25px;
+    display: inline-block;
 }
 .divs-inside-subscribe-email:first-child {
     margin-left: 0;
@@ -528,10 +540,9 @@ footer .div-with-links a:hover{
     outline: none;
     border: 3px solid transparent;
     font-size: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Slabo 27px', serif;
 }
 .divs-inside-subscribe-email input:focus{
-
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 8px #04eef9;
     border: 3px solid #04eef9;
 }
@@ -552,7 +563,8 @@ footer .div-with-links a:hover{
     font-size: 20px;
     background: linear-gradient(to right, #a38236, var(--secondary-color));
     color: #ffffff;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Slabo 27px', serif;
+    font-weight: 700;
 }
 .divs-inside-subscribe-email button:hover{
     color: #000000;
@@ -573,7 +585,8 @@ footer .div-with-links a:hover{
 }
 .error-message{
     font-size: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Slabo 27px', serif;
+    font-weight: 700;
 }
 .error-cross{
     font-size: 25px;
@@ -635,7 +648,8 @@ footer .div-with-links a:hover{
     color: #125688;
 }
 #copyrights{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Slabo 27px', serif;
+    font-weight: 900;
     font-size: 22px;
     color: white;
     opacity: 0.4;
@@ -651,11 +665,13 @@ footer .div-with-links a:hover{
     z-index: 3;
 }
 #cross-transferer a{
-    color: white;
+    color: black;
     text-decoration: none;
     cursor: pointer;
 }
-
+.cross-appearance{
+    display: block;
+}
 /* SIDEBAR FOR TRANSFERER SECTION FORM HERE */
 .transferer-section{
     position: fixed;
@@ -668,145 +684,16 @@ footer .div-with-links a:hover{
     padding:5px 0px ;
     padding-top: 0px;
     transition: all 0.3s ease-in;
-    z-index: 3;
-}
-#old-user{
-    display: flex;
-    background-color: #54e3f3;
-    /* background-color: rgb(243, 187, 150); */
-    width: 100%;
-    height: 60px;
-    justify-content: center;
-    align-items: center;
-}
-#old-user a h3{
-    font-size: 20px;
-    width: 100%;
-    padding: 13px 10px;
-    color: #2d2b2b;
-}
-#old-user a{
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-#transferer-login button{
-    padding: 2px 15px;
-    background-color: rgb(84, 227, 243);
-    color: #204c61;
-    font-size: 16px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    display: inline;
-    margin: 4px 0px;
-    outline: none;
-}
-#transferer-login button:hover{
-    background-color:  #99d0ff;
-}
-#transferer-login #new-user{
-    padding: 5px 10px;
-    /* padding-top: 5px; */
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-
-}
-#new-user a{
-    text-decoration: none;
-}
-
-#new-user h2{
-    display: inline;
-    font-size: 21px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-    color: black;
-}
-.transferer-section ul li{
-    padding: 15px 12px;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    color: #000000;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-.transferer-section ul li:hover{
-    background-color: rgb(164, 240, 251);
-}
-.transferer-section ul  a{
-    font-size: 17px;
-    text-decoration: none;
-}
-.transferer-section  #category{
-    margin: 0px 0px;
-    /* padding-top: 10px;  */
-    
-}
-
-.transferer-section h1{
-    margin: 0px 12px;
-    padding-bottom: 7px;
-    color: #204c61;
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 18px;
-    border-top: 1px solid #6fe4f5;
-    padding-top: 13px;
-
-}
-.transferer-section #about-user{
-    margin: 10px 0px;    
-
-}
-.sidebar-section .arrow{
-    position: relative;
-
-}
-
-#transferer-logo{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-   
-    /* border: 2px solid red; */
-}
-#transferer-logo h1{
-    font-family: 'Mr Dafoe', cursive;
-    font-weight: bold;
-    font-size: 50px;
-    color: black;
-    text-transform: none;
-    border: none;
-}
-.cart-section{
-    position: fixed;
-    top: 0;
-    right: -502px;
-    background-color: #d8faff;
-    width: 500px;
-    height: 100vh;
-    padding:5px 0px ;
-    padding-top: 0px;
-    transition: all 0.3s ease-in;
-    z-index: 3;
-    overflow-y: overlay;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    z-index: 4;
+    opacity: 0;
+    visibility: hidden;
 }
 .show-transferer{
-    right: 0px;    
+    right: 0;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease-in;    
 }
-
-
 /* THIS IS TO CLOSE THE SIDEBAR SECTION AFTER IT IS OPEN */
 #cross-transporter{
     position: fixed;
@@ -817,11 +704,13 @@ footer .div-with-links a:hover{
     z-index: 3;
 }
 #cross-transporter a{
-    color: white;
+    color: black;
     text-decoration: none;
     cursor: pointer;
 }
-
+#cross-transporter.cross-appearance , #cross-transferer.cross-appearance{
+    display: block;
+}
 /* SIDEBAR FOR TRANSPORTER STARTS FROM HERE */
 .transporter-section{
     position: fixed;
@@ -833,8 +722,921 @@ footer .div-with-links a:hover{
     padding:5px 0px ;
     padding-top: 0px;
     transition: all 0.3s ease-in;
-    z-index: 3;
+    z-index: 4;
+    opacity: 0;
+    visibility: hidden;
 }
 .show-transporter{
     left: 0;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease-in;
+}
+
+.old-user{
+    display: flex;
+    background-color: #54e3f3;
+    height: 60px;
+    padding: 0px 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Slabo 27px', serif;
+}
+.old-user a h3{
+    font-size: 20px;
+    width: 100%;
+    padding: 13px 10px;
+    color: #2d2b2b;
+}
+.old-user a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.try-button{
+    cursor: pointer;
+    margin: 4px 0px;
+    outline: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid black;
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.2s all;
+    font-size: 1.25rem;
+    text-decoration: none;
+    font-family: 'Fredoka One', cursive;
+    width: 120px;
+}
+.try-button:hover{
+    border: 1px solid black;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.sign-in-button-inside-carrier-consigner-sidebar{
+    cursor: pointer;
+    margin: 4px 0px;
+    outline: none;
+    background-color: var(--secondary-color);
+    color:white;
+    border: 1px solid black;
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.2s all;
+    font-size: 1.25rem;
+    text-decoration: none;
+    font-family: 'Fredoka One', cursive;
+    width: 120px;
+}
+.sign-in-button-inside-carrier-consigner-sidebar:hover{
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+}
+.new-user{
+    padding: 5px 10px;
+    /* padding-top: 5px; */
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+}
+.new-user a{
+    text-decoration: none;
+}
+
+.new-user h2 , .old-user h2{
+    display: inline;
+    font-size: 21px;
+    font-family: 'Slabo 27px', serif;
+    color: black;
+}
+.all-category-services-in-transporter-transferer-sidebar-section ul li{
+    padding: 15px 12px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    color: #000000;
+    width: 100%;
+    font-family: 'Slabo 27px', serif;
+}
+.all-category-services-in-transporter-transferer-sidebar-section ul li:hover{
+    background-color: rgb(164, 240, 251);
+}
+
+.all-category-services-in-transporter-transferer-sidebar-section ul li.talk-to-executive-li{
+   display: none;
+}
+
+.all-category-services-in-transporter-transferer-sidebar-section ul  a{
+    font-size: 17px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
+.all-category-services-in-transporter-transferer-sidebar-section{
+    margin: 0px 0px;
+    /* padding-top: 10px;  */
+    
+}
+
+.all-category-services-in-transporter-transferer-sidebar-section h1{
+    margin: 0px 12px;
+    padding-bottom: 7px;
+    color: #204c61;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 18px;
+    border-top: 1px solid #6fe4f5;
+    padding-top: 13px;
+    opacity: 0.5;
+
+}
+.sidebar-section .arrow{
+    position: relative;
+}
+
+
+/* PEOPLE SECTION  */
+#people-section{
+    background-color: #e9fffe ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+#heading-of-people-section h1{
+    font-size: 3rem;
+    color: var(--primary-color);
+    font-family: 'Arvo', serif;
+}
+.containing-all-people{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-top: 3rem;
+}
+.our-people{
+
+    justify-content: space-between;
+}
+.founders-in-people{
+    display: flex;
+    align-items: stretch;
+    width: 80%;
+}
+.other-in-people{
+    display: flex;
+    align-items: stretch;
+    width: 50%;
+    margin-top: 7rem;
+}
+.individual-people-in-people-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+}
+.image-of-people{
+    margin-bottom: 10px;
+}
+.image-of-people img{
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+}
+.image-of-people img:hover{
+
+    
+}
+.name-of-people{
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 5px;    
+    font-family: 'Slabo 27px', serif;
+}
+.post-of-people{
+    font-family: 'Slabo 27px', serif;
+    margin-bottom: 5px;
+    opacity: 0.6;
+    font-size: 18px;
+}
+.for-bio{
+    display: flex;
+    cursor: pointer;
+}
+.for-bio *{
+    pointer-events: none;
+
+}
+.for-bio  h1{
+    font-family: 'Slabo 27px', serif;
+    font-size: 20px;
+    color: #143d59;
+}
+.arrow-down-in-bio{
+    display: flex;
+    align-items: center;
+    color: #143d59;
+    margin-left: 4px;
+    font-size: 20px;
+}
+.bio-button-clicked{
+    transform: rotate(180deg);
+}
+.div-containing-bio-in-people-section{
+    width: 85%;
+    text-align: center;
+    margin-top: 1rem;
+    font-family: 'Slabo 27px', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.7;
+    display: none;
+    font-weight: 700;
+}
+.bio-visible{
+    display: block;
+}
+
+/* MEDIA QUERIES FROM HERE */
+/* FOR TABLETS AND SMALL SCREEN LAPTOPS*/
+@media only screen and (max-width:1150px) {
+    #navbar #inside-navbar #logo {
+        font-size: 1.2rem;    
+    }
+    #inside-navbar {
+        justify-content: space-between;
+        width: 95%;
+    }
+    #navbar ul .nav-list-items>a {
+        padding: 0.97rem 0.45rem;
+        margin: 0px 0.1rem;
+        font-size: 1.2rem;  
+    }
+    .point-of-why-us-section {
+        width: 55rem;
+    }    
+
+    /* PEOPLE'S SECTION RESPONSIVE CSS */
+    .founders-in-people {
+        width: 100%;
+    }
+    .other-in-people {
+        width: 55%;
+    }
+    
+}
+
+@media only screen and (max-width:950px) {
+
+    #navbar {
+        position: fixed;
+        width: 100vw;
+        background-color: white;
+        
+    }
+    #navbar #inside-navbar #logo{
+        width: 50%;
+    }
+    .logo-image{
+        height: 84%;
+        width: 37%;
+        
+    }
+    #navbar-overlay {
+        display: none;
+    }
+    #nav-contents>ul {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    #inside-navbar .navbar-section-below-950px{
+        visibility: hidden;
+        opacity: 0;
+        transition: none;
+        margin-top: -10px;
+        position: absolute;
+    }
+    #inside-navbar .show-navbar-section-below-950px{
+        margin-top: 0;
+        visibility: visible;
+        opacity: 1;
+        position: absolute;
+        width: 100vw;
+        top: 70px;
+        left: 0;
+        background-color: white;
+        border-top: 0.1px solid #d2e4ef;
+        transition: all 0.3s;
+    }
+    #inside-navbar .bars {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding: 2px 5px;
+        border: 2px solid transparent;
+        z-index: 9999;
+        left: 0;
+    }
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: var(--primary-color);
+        opacity: 0.4;
+        margin: 6px 0;
+        transition: 0.4s;
+
+    }
+    .change .bar1 {
+        -webkit-transform: rotate(-48deg) translate(-9px, 6px);
+        transform: rotate(-48deg) translate(-9px, 6px);
+
+
+    }
+    .change .bar2 {opacity: 0;}
+    
+    .change .bar3 {
+        -webkit-transform: rotate(43deg) translate(-8px, -8px);
+        transform: rotate(43deg) translate(-8px, -8px);
+
+    }  
+    .point-of-why-us-section {
+        width: 90vw;
+        height: 16rem;
+    }
+    footer #main-div-inside-footer {
+        padding: 0px 30px;
+    }
+    #stay-connected {
+        font-size: 1.3rem;
+    }
+    .divs-inside-subscribe-email input {
+        padding: 13px 10px;
+        width: 215px;
+        font-size: 18px; 
+        box-sizing: border-box;
+    }
+    .divs-inside-subscribe-email button {
+        padding: 13px 10px;
+        font-size: 18px;
+    }    
+    .divs-in-footer h2 {
+        font-size: 1.3rem;
+    }
+    .point-of-why-us-section>div {
+        padding: 0px 0.8rem;
+    }
+    .image-inside-point-of-why-us-section {
+        height: 65%;
+    }
+    .percent-inside-point-of-why-us-section h1 {
+        font-size: 4.5rem;
+    }
+    footer .div-with-links a {
+        font-size: 1rem;
+    }
+    #div-inside-phone-call img {
+        width: 50%;
+        height: 50%;
+    }
+    #div-inside-phone-call{
+        width: 70px;
+        height: 70px;
+    }    
+    #main-section {
+        height: 86vh;
+    }
+    /* TRANSFERER AND TRANSPORTER SIDEBAR SECTION */
+    .new-user h2, .old-user h2 {
+        font-size: 18px;
+    }
+    .sign-in-button-inside-carrier-consigner-sidebar {
+        font-size: 1.2rem;
+        width: 110px;
+    }
+    .try-button {
+        font-size: 1.19rem;
+        width: 110px;
+    }
+
+    /* PEOPLE'S SECTIN RESPONSIVE SECTION */
+    .image-of-people img {
+        width: 170px;
+        height: 170px;
+    }
+    .name-of-people {
+        font-size: 19px;
+    }
+    .post-of-people {
+        font-size: 17px;
+    }
+    .for-bio h1 {
+        font-size: 19px;
+    }
+}
+@media only screen and (max-width:740px) {
+    #inside-navbar .show-navbar-section-below-950px{
+        display: none;
+    }
+    #main-section{   
+        height:100vh;
+    }
+    #main-section::before {
+        width: 100vw;
+        position:absolute;
+     }
+    
+    /* SIDEBAR SECTION FORM HERE */
+    
+    #sign-in-try-now-buttons-in-mobile-screen{
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        width: 100%;
+        background-color: var(--primary-color);
+        z-index: 3; 
+    }
+    .sign-in-try-now-button-divs{
+        width: 50%;
+    }
+    .sign-in-try-now-button-divs a{
+        text-decoration: none;
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 22px 0;
+        transition: 0.2s all;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        font-family: 'Slabo 27px', serif;
+        font-weight: 700;
+    }
+    .sign-in-try-now-button-divs #try-now-button{
+        background-color: var(--primary-color);
+    }
+    .sign-in-try-now-button-divs a:hover{
+        border: 1px solid black;
+        color: var(--secondary-color);
+        background-color: var(--primary-color);
+        box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19); 
+    }
+    /* NEW EDITING RIGHT NOW AT 12:49,07-08-2020 */
+    .logo-inside-sidebar{
+        width: 100%;
+        background-color: white;
+        height: fit-content;
+    }
+    .logo-inside-sidebar a{
+        padding: 0.8rem 0;
+    } 
+    #image-div-logo-inside-sidebar{
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+    }
+    .logo-inside-sidebar .logo-image-in-sidebar{
+        width: 53%;
+        height: 123px;
+    }
+    .logo-inside-sidebar a{
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .change .bar1 {
+        opacity: 1;
+        background-color: var(--primary-color);
+    }
+    .change .bar3 {
+        opacity: 1;
+        background-color: var(--primary-color);
+    }  
+
+    .sidebar-section{
+        display: block;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        background-color: whitesmoke;
+        width: 40%;
+        height: 100vh;
+        transition: all 0.3s ease-in;
+        z-index: 6;
+        overflow: scroll;
+        overflow-x:hidden;
+    }
+    
+    .sidebar-section ul li{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: 'Slabo 27px', serif;
+        border-bottom: 1px solid #406580;
+    }
+    .containing-links-of-pages-and-arrow{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .sidebar-section ul  a{
+        font-size: 25px;
+        text-decoration: none;
+        padding: 15px 12px;
+        width: 70%;
+        color: var(--primary-color);
+    }
+    .div-containing-arrow-down-in-sidebar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 10px 15px 40px;
+    }
+    .div-containing-arrow-down-in-sidebar * {
+        pointer-events: none
+    }
+    
+    .list-of-items-inside-services-and-others-in-sidebar{
+        width: 100%;
+        background-color: var(--third-color);
+        position: absolute;
+        visibility: hidden;
+        margin-top: 15px;
+        top: auto;
+        opacity: 0;
+    }
+    .visibility-class-in-sidebar{
+        opacity: 1;
+        margin-top: 0;
+        visibility: visible;
+        position: sticky;
+        transition-property: margin-top, opacity, top, visibility;
+        transition-duration: 0.2s;
+        z-index: 9999;
+    }
+    .arrow-down span {
+        width: 0; 
+        height: 0; 
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid var(--primary-color);
+    }
+    .list-of-items-inside-services-and-others li{
+        align-items: center;
+    }
+    .list-of-items-inside-services-and-others li a{
+        width: 100%;
+        padding-left: 35px;
+        color: white;
+    }
+    #inside-navbar .border{
+        border: 1px solid var(--primary-color);
+    }
+    .sidebar-section  #navbar-items{    
+        margin: 0px 0px;
+        
+    }
+    .show{
+        left: 0px;
+        
+    }
+    .sidebar-section ul .active{
+        border-bottom: 3px solid var(--primary-color);
+    }
+    .rotation{
+        transform: rotateX(180deg);
+    }
+    #div-your-marketing-team-inside-main-section {
+        width: 79%;
+        margin-top: 10rem;
+    }
+    #phone-call{
+        display: none;
+    }
+    /* WHY-US-SECTION RESPONSIVE DESIGN FROM HERE */
+    .point-of-why-us-section {
+        height: 12rem ;
+        width: 95%;
+    }
+    
+    .percent-inside-point-of-why-us-section h1 {
+        font-size: 1.8rem;
+        display: inline;
+    }
+    .percent-inside-point-of-why-us-section div>h6 {
+        font-size: 1.5rem;
+    }
+    .percent-inside-point-of-why-us-section div .percentages-in-why-us-sections{
+        display: inline;
+    }
+    .topic-inside-why-us-section {
+        font-size: 1.4rem;    
+    }   
+
+    .list-items-inside-keypoints-of-why-us-section {
+        font-size: 1.1rem;
+    }    
+    .keypoints-inside-why-us-section h6 {
+        font-size: 1.2rem;
+    }
+    
+    /* FOOTER FROM HERE */
+    footer{
+        margin-bottom:0; 
+    }
+    footer #main-div-inside-footer {
+        padding: 0px 10px;
+    }
+    .divs-in-footer {
+        width: 29%;
+    }
+    .divs-in-footer h2 {
+        font-size: 0.95rem;
+    }
+    /* BELOW FOOTER SECTION */
+    #below-footer-section {
+        position:static;
+    }
+    #stay-connected {
+        font-size: 1.15rem;
+    }
+    #subscribe-email{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .divs-inside-subscribe-email {
+        margin-left: 0;
+        width: 330px;
+    }
+    #div-for-subscribe-button{
+        margin-left: 0;
+    }
+    .divs-inside-subscribe-email input {
+        width: 100%;
+    }
+    .divs-inside-subscribe-email button {
+        width: 100%;
+    }
+
+    /* TRANSFERER AND TRANSPORTER SIDEBAR SECTION */
+    .new-user h2, .old-user h2 {
+        font-size: 16.5px;
+    }
+    .sign-in-button-inside-carrier-consigner-sidebar {
+        font-size: 1.1rem;
+        width: 100px;
+    }
+    .try-button {
+        font-size: 1.05rem;
+        width: 100px;
+    }
+    .all-category-services-in-transporter-transferer-sidebar-section ul li.talk-to-executive-li{
+        background-color: #f4b41a;
+        border-radius: 10px;
+        text-align: center;
+        justify-content: space-around;
+        width: 95%;
+        align-items: center;
+        padding: 15px 5px;
+        box-sizing: border-box;
+        font-size: 17px;
+        display: block;
+    }
+    li.talk-to-executive-li i.phone-icon-talk-to-executives{
+        transform: rotateY(180deg);
+        font-size: 20px;
+    }
+
+    /* OUR PEOPLE'S SECTION RESPONSIVENESS */
+    .containing-all-people {
+        margin-top: 2rem;
+    }
+    .founders-in-people {
+        flex-direction: column;
+        align-items: center;
+    }
+    .other-in-people {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+    }
+    .individual-people-in-people-section {
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+    .div-containing-bio-in-people-section {
+        width: 85%;
+        text-align: left;
+    }
+}
+@media only screen and (max-width:600px) {
+    /* IN MAIN NAVBAR */
+    .logo-image {
+        height: 74%;
+        width: 45%;
+    }
+    /* IN SIDEBAR */
+    .sidebar-section {
+        width: 60%;
+    }
+    .logo-inside-sidebar .logo-image-in-sidebar{
+        height: 107px;
+    }
+    /* TRANSFERER AND TRANSPORTER SIDEBAR SECTION */
+    .new-user {
+        padding: 5px 5px;
+    }
+    .old-user{
+        padding: 0 5px;
+    }
+    .new-user h2, .old-user h2 {
+        font-size: 15.5px;
+    }
+    .sign-in-button-inside-carrier-consigner-sidebar {
+        font-size: 1rem;
+        width: 95px;
+    }
+    .try-button {
+        font-size: 0.98rem;
+        width: 95px;
+    }
+}
+@media only screen and (max-width:490px) {
+    #main-section-overlay {
+        height: 135%;
+    }
+    #navbar #inside-navbar #logo {
+        font-size: 4.8vw;
+    }
+    .logo-image {
+        height: 3.5rem;
+        width: 7.4rem;
+    }
+    /* IN SIDEBAR */
+    .logo-inside-sidebar .logo-image-in-sidebar{
+        height: 80px;
+    }
+    #heading-inside-main-section h1 {
+        font-size: 2rem;
+    }    
+    #main-section #heading-inside-main-section {
+        width: 95%;
+    }    
+    #heading-inside-main-section h3 {
+        width: 100%;
+    }
+    #main-buttons button {
+        width: 8rem;
+        margin: 0px 15px;
+        padding: 10px 0px;
+        margin-top: 35px;
+        font-size: 0.9rem;
+    }    
+    #main-section::before {
+        width: 100vw;
+        height:100vh;
+    }    
+    #main-buttons a {
+        width: 7rem;
+        margin: 40px 15px 0 15px;
+        font-size: 0.89rem;
+    }
+    /* SIDEBAR RESPONSIVE */
+    .sidebar-section ul a {
+        display: inline-block;
+        width: 100%;
+        font-size: 20px;
+    }    
+
+    /* WHY-US-SECTION RESPONSIVE */
+    #heading-inside-why-us-section h1 {
+        font-size: 2.1rem;
+    }
+    .point-of-why-us-section {
+        flex-direction: column;
+        height: 18rem;
+    }
+    .point-of-why-us-section .divs-inside-point-of-why-us-section {
+        padding: 0;
+        width: 100%;
+        border-bottom: 1px solid #ffecec;
+        justify-content: space-evenly;
+        padding-bottom: 15px;
+        height: 60%;
+    } 
+    .point-of-why-us-section .keypoints-inside-why-us-section{
+        padding-top: 15px;
+        display: flex;
+        width: 65%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .keypoints-inside-why-us-section h6 {
+        font-size: 1.4rem;
+    }
+    .list-items-inside-keypoints-of-why-us-section {
+        font-size: 1rem;
+    }
+
+    /* FOOTER SECTION */
+    footer {
+        padding: 32px 0 12px 0;
+        margin-bottom:0;
+    }
+    footer #main-div-inside-footer {
+        flex-direction: column;
+    }
+    .divs-in-footer h2 {
+        font-size: 1.3rem;
+        padding-bottom: 0;
+    }
+    footer .div-with-links a {
+        font-size: 1.1rem;
+    }
+    .divs-in-footer {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    
+    /* SECTION BELOW FOOTER-SECTION */
+    .divs-inside-subscribe-email {
+        width: 270px;
+    }
+    #stay-connected {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    #copyrights {
+        font-size: 17px;
+        padding-bottom: 60px;
+    }
+  /* TRANSFERER AND TRANSPORTER SIDEBAR SECTION */
+    .new-user {
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        height: fit-content;
+    }
+    .old-user{
+        padding: 5px 5px;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        height: fit-content;
+    }
+    .new-user h2, .old-user h2 {
+        font-size: 15.5px;
+        text-align: center;
+    }
+    .sign-in-button-inside-carrier-consigner-sidebar {
+        font-size: 1rem;
+        width: 110px;
+    }
+    .try-button {
+        font-size: 0.98rem;
+        width: 110px;
+    }
+    .all-category-services-in-transporter-transferer-sidebar-section h1 {
+        text-align: center;
+    }
+    .all-category-services-in-transporter-transferer-sidebar-section ul li {
+        padding: 15px 5px;
+        font-size: 14px;
+    }
+    .all-category-services-in-transporter-transferer-sidebar-section ul li.talk-to-executive-li {
+        font-size: 15px;
+        padding: 10px 0px;
+    }
+    li.talk-to-executive-li i.phone-icon-talk-to-executives {
+        transform: rotateY(180deg);
+        font-size: 20px;
+        margin-left: 5px;
+    }
+   /* FOR OUR PEOPLE SECTION RESPONSIVENESS */
+   #heading-of-people-section h1 {
+        font-size: 1.9rem;
+    }
+   .div-containing-bio-in-people-section {
+        width: 90%;
+    }
 }

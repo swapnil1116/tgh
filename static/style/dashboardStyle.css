@@ -16,13 +16,8 @@
     z-index: 1;
     height: 80px;
     background-color: white;
-
-}
-#inside-navbar{
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 80%;
+
 }
 #navbar-overlay{
     position: absolute;
@@ -34,23 +29,36 @@
     z-index: -1;
     background-color: white;
 }
+#inside-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+}
+
+
 #navbar #inside-navbar #logo{
-    font-family: 'Mr Dafoe';
+    font-family: 'Fredoka One', cursive;
     font-size: 23px;
     color: var(--primary-color);
+    width: 30%;
+    margin-left: 100px;
 }
-#navbar ul{
+.logo-image{
+    width:30%;
+}
+.ul-inside-navbar{
     display: flex;
     align-items: center;
     transition: 3s all ease;
     
 }
-#navbar ul .nav-list-items{
+ .nav-list-items{
     list-style: none;
     color: #fcfcfc;
 }
 
-#navbar ul .nav-list-items a{
+ .nav-list-items a{
     cursor: pointer;
     font-size: 20px;
     text-decoration: none;
@@ -59,7 +67,7 @@
     padding: 15px 7px;
     margin: 0px 12px;
 }
-#navbar ul .nav-list-items #new-auction-button{
+.nav-list-items #new-auction-button{
     background-color: var(--secondary-color);
     color: white;
     border: 1px solid black;
@@ -67,14 +75,14 @@
     border-radius: 10px;
     transition: 0.2s all;
 }
-#navbar ul .nav-list-items #new-auction-button:hover{
+ .nav-list-items #new-auction-button:hover{
     border: 1px solid black;
     /* text-decoration: underline; */
     color: var(--secondary-color);
     background-color: var(--primary-color);
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);    
 }
-#navbar ul .nav-list-items #new-auction-button span{
+ .nav-list-items #new-auction-button span{
     font-size: 25px;
 }
 
@@ -162,6 +170,9 @@
     height: 100vh;
     background-color: white;
     position: fixed;
+    transition: all 0.3s ease-in;
+    z-index: 3;
+    overflow: scroll;
 }
 .ul-inside-sidebar{
     border-top: 1px solid #ffdcdc;
@@ -176,7 +187,7 @@
     font-size: 20px;
     text-decoration: none;
     width: 100%;
-    padding: 1.5rem;
+    padding: 1.5rem 0.5rem;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
@@ -226,32 +237,8 @@
     color: var(--secondary-color);
     
 }
-.divs-containing-input{
-    width: 81%;
-    font-size: 1.3rem;
-    margin-top: 10px;
-    cursor: pointer;
-    outline: none;
-    box-sizing: border-box;
-    border: none;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    
-}
-.divs-containing-input a{
-    color: white;
-    text-decoration: none;
-    width: 100%;
-    padding: 10px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+
 .divs-containing-input a:hover{
     color: var(--secondary-color);
     background-color: var(--primary-color);
@@ -261,12 +248,13 @@
 .delete-auction-section{
     display: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    position: absolute;
-    top: 42vh;
-    left: 45vw;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin: auto;
     flex-direction: column;
     align-items: center;
-    width: 20vw;
+    width: 20rem;
     background-color: black;
     border-radius: 5px;
     color: white;
@@ -303,15 +291,186 @@
     justify-content: center;
     align-items: center;
 }
-#complete-wrapper-of-page{
+.complete-wrapper-of-page{
     height: 10000px;
     position: fixed;
-    z-index: 2;
+    z-index: 1;
 }
 .shadowing{
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     background-color: black;
     opacity: 0.6;
 }    
+
+
+.active{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.active:hover{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.no-auctions{
+    font-weight: 100;
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    color: rgb(123, 207, 255);
+}
+
+
+/*NEW AUCTION SYMBOL FORM HERE */
+#new-auction{
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    transition: 0.1s all;
+}
+
+#div-inside-new-auction{
+    width: 70px;
+    height: 70px;
+    background-color: var(--secondary-color);
+    border:transparent ;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#div-inside-new-auction a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width:1210px){
+    .links-inside-sidebar {
+        font-size: 17px;
+        padding: 1.3rem 0.5rem;
+    }
+    .logo-image {
+        width: 50%;
+    }
+    .divs-containing-input a {
+        font-size: 18px;
+    }
+    .divs-containing-input {
+        width: 40%;
+    }
+}
+@media only screen and (max-width:850px){
+    #sidebar {
+        width: 23vw;   
+    }
+    #inside-navbar {
+        width: 85%;
+    }
+    .logo-image {
+        width: 10rem;
+    }
+    #navbar #inside-navbar #logo {
+        margin-left: 70px;
+    }
+    #main-section {
+        width: 77vw;
+        padding-left: 23vw;
+    }
+    .divs-containing-input {
+        width: 55%;
+    }
+}
+@media only screen and (max-width:720px){
+    #inside-navbar {
+        width: 91%;
+    }
+    .links-inside-sidebar {
+        padding: 0.9rem 0.5rem;
+    }    
+    .nav-list-items a {
+        font-size: 17px;
+    }
+    #sidebar{
+        left: -90vw;
+        height: 100vh;
+        top: 0;
+        width: 89vw;
+    }
+    #sidebar-main-section-wrapper .show{
+        left: 0px;
+
+    }
+    #main-section {
+        width: 100vw;
+        padding-left: 0;
+    }
+    #hover-on-menu {
+        right: 1.5vw;
+        width: 121px;
+    }
+    .bars {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding: 2px 5px;
+        border: 2px solid transparent;
+        z-index: 9999;
+        left: 0;
+    }
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: var(--primary-color);
+        opacity: 0.4;
+        margin: 6px 0;
+        transition: 0.4s;
+
+    }
+    .change .bar1 {
+        -webkit-transform: rotate(-48deg) translate(-9px, 6px);
+        transform: rotate(-48deg) translate(-9px, 6px);
+
+
+    }
+    .change .bar2 {opacity: 0;}
+    
+    .change .bar3 {
+        -webkit-transform: rotate(43deg) translate(-8px, -8px);
+        transform: rotate(43deg) translate(-8px, -8px);
+
+    }  
+    .border{
+        border: 1px solid var(--primary-color);
+    }
+
+}
+
+@media only screen and (max-width:480px){
+    .logo-image {
+        width:8rem;
+    }
+    #main-section #dashboard-heading {
+        font-size: 2.3rem;
+        text-align: center;
+    }
+    .nav-list-items #new-auction-button {
+        font-size: 15px;
+        padding: 8px ;
+    }
+    #navbar #inside-navbar #logo {
+        margin-left: 20px;
+    }
+    .delete-auction-section{
+        width: 17rem;
+    }
+    .delete-auction-section .divs-containing-input a {
+        font-size: 15px;
+    }
+}

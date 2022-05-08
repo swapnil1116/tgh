@@ -3,7 +3,7 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title Our Logistics
+    title Create Account
     style.
       #div-inside-select-trucks label{
       display: flex;
@@ -29,13 +29,16 @@ html(lang='en')
     - var user = {AllErrors:AllErrors, name: name , email:emailAddress,mobileNumber:mobileNumber}
     section#createAccount-section
       #inside-createAccount-section
+        .div-logo-in-create-account-login
+          a.anchor-tag-logo-in-create-account-login(href="/")
+            img.logo-image-in-create-account-login(src="../static/img/realLogo.jpg", alt="", srcset="")
         #createAccount-heading
           h1 Create Account
         include partial/flash-messages.pug 
         form#createAccount-form(action="/createAccount", method="post" , enctype="application/x-www-form-urlencoded")
           div
             label.label-inside-form(for="name") Your name
-            br
+            
             if (user.AllErrors).length>0  
               input#name.input-inside-form(type="text" name="name" value=user.name )
             else  

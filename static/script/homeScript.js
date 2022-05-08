@@ -1,5 +1,4 @@
 
-
 // FOR APPEARING AND DISAPPEARING OF NAVBAR AND IMAGE BACKGROUND OF MAIN PAGE
 var navbarOverlay = document.querySelector('#navbar-overlay');
 var mainSectionOverlay=document.querySelector("#main-section-overlay");
@@ -9,22 +8,22 @@ window.onscroll = function() {
   if (window.scrollY > 70 && window.scrollY<120) {
     navbarOverlay.style.opacity="0.2"
     mainSectionOverlay.style.opacity="0.1"
-    belowFooterSection.style.display="none"
+    // belowFooterSection.style.display="none"
   } 
   else if (window.scrollY >119 && window.scrollY<=250) {
     navbarOverlay.style.opacity="0.3"
     mainSectionOverlay.style.opacity="0.25"
-    belowFooterSection.style.display="none"
+    // belowFooterSection.style.display="none"
   }
   else if (window.scrollY >250 && window.scrollY<=350) {
     navbarOverlay.style.opacity="0.4"  
     mainSectionOverlay.style.opacity="0.35"
-    belowFooterSection.style.display="none"
+    // belowFooterSection.style.display="none"
   }
   else if (window.scrollY >350 && window.scrollY<=450) {
     navbarOverlay.style.opacity="0.7"
     mainSectionOverlay.style.opacity="0.45"
-    belowFooterSection.style.display="flex"  
+    // belowFooterSection.style.display="none"  
   }
   else if (window.scrollY >450 && window.scrollY<=500) {
     navbarOverlay.style.opacity="1"
@@ -45,187 +44,180 @@ window.onscroll = function() {
   else if (window.scrollY >650 && window.scrollY<=750) {
     navbarOverlay.style.opacity="1"  
     mainSectionOverlay.style.opacity="0.6"
+    // belowFooterSection.style.display="flex"  
   }
   else if (window.scrollY >750 ) {
     navbarOverlay.style.opacity="1"
     mainSectionOverlay.style.opacity="0.6"
-    belowFooterSection.style.display="flex"
+    // belowFooterSection.style.display="flex"
   }
   else {
     navbarOverlay.style.opacity="0"
     mainSectionOverlay.style.opacity="0"
   }
+  screenHeight=(screen.height)/1.1;
+
+  if(window.scrollY>screenHeight){
+    belowFooterSection.style.display="flex"
+  }else if(window.scrollY<screenHeight){
+    belowFooterSection.style.display="none"
+  }
 }
 
 
-// CLICKING ON SEARCH ICON INSIDE NAVBAR
-let searchIcon=document.getElementById("search-icon-navbar")
-let divForSearch=document.getElementById("div-for-search")
-let searchInput=document.getElementById("navbar-search");
-let crossForSearch=document.getElementById("cross-navbar-search")
-let outermost=document.getElementById("outermost");
-searchIcon.addEventListener("click",(e)=>{
-  e.preventDefault();
-  divForSearch.style.display="flex";
-  outermost.className="shadowing";
-  outermost.style.backgroundColor="transparent"
-  outermost.style.height=`${document.body.clientHeight}px`;
-  searchInput.focus()
-})
-crossForSearch.addEventListener("click",()=>{
-  divForSearch.style.display="none"
-  outermost.className=" "
-  outermost.style.backgroundColor="black"
-})
-outermost.addEventListener("click",(e)=>{
-  outermost.className=" "
-  outermost.style.backgroundColor="black"
-  divForSearch.style.display="none"
-})
-
-// WHEN HOVERING ON NAVBAR LINKS
-// FIRST LETS DO IT FOR HOME LINK
-let HomeButtonOfNavbar=document.querySelector("#home")
-let whenHoverOnHomeButton=document.querySelector("#hover-on-home")
-let arrowDownInsideHomeButtonOfNavbar=document.querySelector("#home i")
-
-console.log(HomeButtonOfNavbar)
-HomeButtonOfNavbar.addEventListener("mouseover",()=>{
-
-  whenHoverOnHomeButton.style.display="block";
-  arrowDownInsideHomeButtonOfNavbar.classList.remove("fa-angle-down")
-  arrowDownInsideHomeButtonOfNavbar.classList+=(" fa-angle-up")
-  whenHoverOnHomeButton.addEventListener("mouseover",()=>{
-    whenHoverOnHomeButton.style.display="block";
-    arrowDownInsideHomeButtonOfNavbar.classList.remove("fa-angle-down")
-    arrowDownInsideHomeButtonOfNavbar.classList+=(" fa-angle-up")
-    
-  });
-  whenHoverOnHomeButton.addEventListener("mouseout",()=>{
-    whenHoverOnHomeButton.style.display="none";
-   
-    arrowDownInsideHomeButtonOfNavbar.classList.remove("fa-angle-up")
-    arrowDownInsideHomeButtonOfNavbar.classList+=(" fa-angle-down")
-    
-  }) 
-  
-})
-HomeButtonOfNavbar.addEventListener("mouseout",()=>{
-  whenHoverOnHomeButton.style.display="none";
-  arrowDownInsideHomeButtonOfNavbar.classList.remove("fa-angle-up")
-  arrowDownInsideHomeButtonOfNavbar.classList+=(" fa-angle-down")
-})
-
-// FOR OUR COMPANY
-let CompanyButtonOfNavbar=document.querySelector("#company")
-let whenHoverOnCompanyButton=document.querySelector("#hover-on-company")
-let arrowDownInsideCompanyButtonOfNavbar=document.querySelector("#company i")
-
-console.log(HomeButtonOfNavbar)
-
-CompanyButtonOfNavbar.addEventListener("mouseover",()=>{
-
-  whenHoverOnCompanyButton.style.display="block";
-  arrowDownInsideCompanyButtonOfNavbar.classList.remove("fa-angle-down")
-  arrowDownInsideCompanyButtonOfNavbar.classList+=(" fa-angle-up")
-  whenHoverOnCompanyButton.addEventListener("mouseover",()=>{
-    whenHoverOnCompanyButton.style.display="block";
-    arrowDownInsideCompanyButtonOfNavbar.classList.remove("fa-angle-down")
-    arrowDownInsideCompanyButtonOfNavbar.classList+=(" fa-angle-up")
-    
-  });
-  whenHoverOnCompanyButton.addEventListener("mouseout",()=>{
-    whenHoverOnCompanyButton.style.display="none";
-   
-    arrowDownInsideCompanyButtonOfNavbar.classList.remove("fa-angle-up")
-    arrowDownInsideCompanyButtonOfNavbar.classList+=(" fa-angle-down")
-    
-  }) 
-  
-})
-CompanyButtonOfNavbar.addEventListener("mouseout",()=>{
-  whenHoverOnCompanyButton.style.display="none";
-  arrowDownInsideCompanyButtonOfNavbar.classList.remove("fa-angle-up")
-  arrowDownInsideCompanyButtonOfNavbar.classList+=(" fa-angle-down")
-})
-
-
-// JAVASCRIPT FOR TRANSFERER FORM HERE
-let transfererButtonInMainSection=document.getElementById("transferer");
-let navbar=document.getElementById("navbar");
-outermost=document.getElementById("outermost");
-let transfererSideBarsection=document.querySelector(".transferer-section");
-let crossTransferer=document.querySelector("#cross-transferer");
-transfererButtonInMainSection.addEventListener("click",transfererSideBarClick);
-crossTransferer.addEventListener("click",crossTransfererClick);
-outermost.addEventListener("click",outermostTransfererClick)
-function transfererSideBarClick(e){
-    e.preventDefault()
-    crossTransferer.style.display="block"
-    transfererSideBarsection.classList +=" show-transferer"
-    outermost.className="shadowing";
-    outermost.style.height=`${document.body.clientHeight}px`;
-    document.body.style.overflowY="hidden";
-  };
-  
-function crossTransfererClick(e){
-  e.preventDefault();
-    transfererSideBarsection.classList.remove("show-transferer")
-    transfererButtonInMainSection.style.display="inline"
-    crossTransferer.style.display="none"
-    navbar.style.opacity="1"
-    document.body.style.overflowY="scroll";
-    outermost.className=" "
-  };
-  function outermostTransfererClick(e){
-  e.preventDefault();
-  transfererSideBarsection.classList.remove("show-transferer")
-  transfererButtonInMainSection.style.display="inline"
-  crossTransferer.style.display="none";
-  document.body.style.overflowY="scroll";
-  navbar.style.opacity="1"
-  outermost.className=" "
-  divForSearch.style.display="none"
-}; 
-
-
-// JAVASCRIPT FOR TRASNPORTER SIDEBAR
-let transporterButtonInMainSection=document.getElementById("transporter");
-navbar=document.getElementById("navbar");
-outermost=document.getElementById("outermost");
 let transporterSideBarsection=document.querySelector(".transporter-section");
-let crossTransporter=document.querySelector("#cross-transporter");
-transporterButtonInMainSection.addEventListener("click",transporterSideBarClick);
-crossTransporter.addEventListener("click",crossTransporterClick);
-outermost.addEventListener("click",outermostTransporterClick)
-function transporterSideBarClick(e){
-    e.preventDefault()
-    crossTransporter.style.display="block"
-    transporterSideBarsection.classList +=" show-transporter"
-    outermost.className="shadowing";
-    outermost.style.height=`${document.body.clientHeight}px`;
-    document.body.style.overflowY="hidden";
-  };
+// FOR NAVBAR BELOW 950PX and ABOVE 740PX WIDTH
+if(screen.width>=741){
+  function navbarBelow950px(x) {
+    x.classList.toggle("change");
+    x.classList.toggle("border");
+    $(".navbar-section-below-950px").toggleClass("show-navbar-section-below-950px");
+    $("#navbar").toggleClass("show-navbar-section-below-950px");
+  }
+}
+else if(screen.width<740){
+  // FOR SIDE-NAVBAR'S DISAPPEARANCE
+  let bars=document.querySelector(".bars")
+  let outermost2= document.getElementById("outermost2")
+  let sidebar=document.querySelector(".sidebar-section")
+  let changedCrossInsideNavbar=document.querySelector(".change")
+  outermost2.addEventListener("click",(e)=>{
+    e.preventDefault();
+    bars.className="bars"
+    sidebar.className="sidebar-section"
+    outermost2.classList.remove("shadowing") 
+    document.body.className=" "
+  })
+  // FOR SIDE-NAVBAR'S APPEARANCE
+  function navbarBelow950px(x) {
+    x.classList.toggle("change");
+    x.classList.toggle("border");
+    $(".sidebar-section").toggleClass("show");
+    $("body").toggleClass("no-scrolling")
+    $("#outermost2").toggleClass("shadowing")
+  }
+
+}
+
+
+// FOR COLORING AND ROTATING THE ARROW DOWN OF MAIN FULL SCREEN NAVBAR AND ALSO DISPLAYING THE LIST ITEMS
+let anchorTagOfMainNavbar=document.getElementsByClassName("main-anchor-tags-having-dropdown-links");
+let arrowsOfMainNavbar=document.getElementsByClassName("arrows-in-main-navbar");
+if(screen.width>1050){
+  for(i=0;i<anchorTagOfMainNavbar.length;i++){
   
-function crossTransporterClick(e){
-  e.preventDefault();
-    transporterSideBarsection.classList.remove("show-transporter")
-    transporterButtonInMainSection.style.display="inline"
-    crossTransporter.style.display="none"
-    navbar.style.opacity="1"
-    document.body.style.overflowY="scroll";
-    outermost.className=" "
-  };
-  function outermostTransporterClick(e){
-  e.preventDefault();
-  
-  transporterSideBarsection.classList.remove("show-transporter")
-  transporterButtonInMainSection.style.display="inline"
-  crossTransporter.style.display="none"
-  document.body.style.overflowY="scroll";
-  navbar.style.opacity="1"
-  outermost.className=" "
-}; 
+    arrowsOfMainNavbar[i].style['pointer-events'] ="none"
+    anchorTagOfMainNavbar[i].addEventListener("mouseover",(event)=>{
+      event.target.nextElementSibling.classList.add("visibility-class-in-main-navbar")
+      event.target.children[0].classList.add("arrow-up-inside-main-navbar");
+      event.target.classList.add("class-for-color-in-main-navbar")
+      event.target.nextElementSibling.addEventListener("mouseenter",(e)=>{
+        event.target.classList.add("class-for-color-in-main-navbar")
+        event.target.nextElementSibling.classList.add("visibility-class-in-main-navbar")
+        event.target.children[0].classList.add("arrow-up-inside-main-navbar");
+      })
+      event.target.nextElementSibling.addEventListener("mouseleave",(e)=>{
+        event.target.classList.remove("class-for-color-in-main-navbar")
+        event.target.children[0].classList.remove("arrow-up-inside-main-navbar");
+        event.target.nextElementSibling.classList.remove("visibility-class-in-main-navbar")
+      })
+    })
+  }
+  for(i=0;i<anchorTagOfMainNavbar.length;i++){
+    anchorTagOfMainNavbar[i].addEventListener("mouseout",(event)=>{
+      event.target.classList.remove("class-for-color-in-main-navbar")
+      event.target.nextElementSibling.classList.remove("visibility-class-in-main-navbar")
+      event.target.children[0].classList.remove("arrow-up-inside-main-navbar");
+    })
+  }  
+}
+
+// FOR TABLETS NAVBAR DROPDOWN MENU
+else if(screen.width<=1050){
+  document.addEventListener("click",(e)=>{
+    let currentForMainNavbar = document.getElementsByClassName("class-for-color-in-main-navbar");
+    let rotatedForMainNavbar = document.getElementsByClassName("arrow-up-inside-main-navbar");
+    if(e.target.classList.contains("arrows-in-main-navbar")){
+      e.preventDefault()
+      if(e.target.parentElement.classList.contains("class-for-color-in-main-navbar")){
+        currentForMainNavbar[0].className = currentForMainNavbar[0].className.replace(" class-for-color-in-main-navbar", "");
+        rotatedForMainNavbar[0].className = rotatedForMainNavbar[0].className.replace(" arrow-up-inside-main-navbar", "");
+        e.target.parentElement.nextElementSibling.classList.remove("visibility-class-in-main-navbar")
+      }  
+      else if(currentForMainNavbar.length==0){
+        e.target.parentElement.className += " class-for-color-in-main-navbar";
+        e.target.className += " arrow-up-inside-main-navbar";
+        e.target.parentElement.nextElementSibling.classList +=" visibility-class-in-main-navbar"
+      }
+      else{
+        previousListInMainNavbar=currentForMainNavbar[0]
+        previousListInMainNavbar.nextElementSibling.classList.remove("visibility-class-in-main-navbar");
+        currentForMainNavbar[0].className =currentForMainNavbar[0].className.replace(" class-for-color-in-main-navbar", "");
+        rotatedForMainNavbar[0].className = rotatedForMainNavbar[0].className.replace(" arrow-up-inside-main-navbar","");
+        e.target.parentElement.className += " class-for-color-in-main-navbar";
+        e.target.className += " arrow-up-inside-main-navbar";
+        e.target.parentElement.nextElementSibling.classList +=" visibility-class-in-main-navbar"  
+      }  
+    }
+    else{
+      if(currentForMainNavbar.length==0 || rotatedForMainNavbar.length==0){
+
+      }
+      else{
+        currentForMainNavbar[0].className =currentForMainNavbar[0].className.replace(" class-for-color-in-main-navbar", "");
+        rotatedForMainNavbar[0].className = rotatedForMainNavbar[0].className.replace(" arrow-up-inside-main-navbar","");
+        for (var i = 0; i < arrowsOfMainNavbar.length; i++) {
+          arrowsOfMainNavbar[i].parentElement.nextElementSibling.classList.remove("visibility-class-in-main-navbar")
+        }
+      }
+    }
+  })
+}
+
+//  FOR ACTIVE LINK HIGHLIGHTING
+// Get all buttons with class="btn" inside the container
+// FOR SIDE-BAR NAVIGATION PANEL
+var btns = document.getElementsByClassName("arrow-down");
+document.addEventListener("click",(e)=>{
+  let current = document.getElementsByClassName("active");
+  let rotated = document.getElementsByClassName("rotation");
+  if(e.target.classList.contains("arrow-down")){
+        if(e.target.parentElement.classList.contains("active")){
+          current[0].className = current[0].className.replace(" active", "");
+          rotated[0].className = rotated[0].className.replace(" rotation", "");
+          e.target.parentElement.nextElementSibling.classList.remove("visibility-class-in-sidebar")
+        }
+        else if(current.length==0){
+          e.target.parentElement.className += " active";
+          e.target.className += " rotation";
+          e.target.parentElement.nextElementSibling.classList +=" visibility-class-in-sidebar"
+        }
+        else{
+          previousList=current[0]
+          previousList.nextElementSibling.classList.remove("visibility-class-in-sidebar")
+          current[0].className = current[0].className.replace(" active", "");
+          rotated[0].className = rotated[0].className.replace(" rotation", "");
+          e.target.parentElement.className += " active";
+          e.target.className += " rotation";
+          e.target.parentElement.nextElementSibling.classList +=" visibility-class-in-sidebar"   
+        }
+  }
+  else{
+    if(current.length ==0 || rotated.length==0){
+        console.log("nothing right now")
+    }  
+    else{
+      console.log("clicked outside")
+      current[0].className = current[0].className.replace(" active", "");
+      rotated[0].className = rotated[0].className.replace(" rotation", "");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].parentElement.nextElementSibling.classList.remove("visibility-class-in-sidebar")
+      }
+    }
+  }  
+})
+
+
 
 // FOR SUBSCRIBE US BUTTON 
 let subscribeButton=document.querySelector("#subscribe-us-button")
@@ -235,9 +227,28 @@ function onsubmit(){
   document.querySelector("#subscribe-email-form").scrollIntoView()
 }
 
+// FOR BIO OF OUR PEOPLE
+let bioButton=document.getElementsByClassName("for-bio")
+for(i=0;i<bioButton.length;i++){
+  bioButton[i].addEventListener("click",(e)=>{
+    if(e.target.children[1].classList.contains("bio-button-clicked")){
+      e.target.nextElementSibling.classList.remove("bio-visible")
+      e.target.children[1].classList.remove("bio-button-clicked")
+    }
+    else{
+      console.log(e.target.nextElementSibling)
+      e.target.children[1].classList+=" bio-button-clicked"
+      e.target.nextElementSibling.classList+=" bio-visible"
+    }
+  })
+}
 
-
-
+// This prevents the page from scrolling down to where it was previously.
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+// This is needed if the user scrolls down during page load and you want to make sure the page is scrolled to the top once it's fully loaded. This has Cross-browser support.
+window.scrollTo(0,0);
 
 // FOR ERRORS 
 let errorCross=document.querySelector(".error-cross");

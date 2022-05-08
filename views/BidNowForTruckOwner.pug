@@ -1,56 +1,36 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends baseDashboardForTruckOwner.pug
+block style
     title Make A Bid
     link(rel='stylesheet', href='../static/style/dashboardStyle.css')
     link(rel='stylesheet', href='../static/style/BidNowForTruckOwner.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
     link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
-    
-  body
-    nav#navbar
-      #navbar-overlay
-      #inside-navbar
-        #logo
-          h1 Our  Logistics 
-        #nav-contents
-          ul
-            li.nav-list-items
-              a#new-auction-button(href='/carrier/pendingBids')
-                | Pending Bids
-            li.nav-list-items
-              a#menu
-                | Menu
-                i.fa.fa-angle-down.arrow-down.arrow-in-shop-login
-    #sidebar-main-section-wrapper
+
+block content    
       section#sidebar
-        ul.ul-inside-sidebar
-          li
-            a#username.links-inside-sidebar Hello, #{user.name}
-          li
-            a.links-inside-sidebar(href='/customer/dashboard') Dashboard
-          li
-            a.links-inside-sidebar(href='/currentBookings') Current Booking
-          li
-            a.links-inside-sidebar(href='') Payment
-          li
-            a.links-inside-sidebar(href='') Tracking
-          li
-            a.links-inside-sidebar(href='') Calculator
-          li
-            a.links-inside-sidebar(href='') Book by TrucGo
-        ul.ul-inside-sidebar
-          li
-            a.links-inside-sidebar(href='') Setting
-          li
-            a.links-inside-sidebar(href='') Support
-          li
-            a.links-inside-sidebar(href='/logout') Log Out
+            ul.ul-inside-sidebar
+                li
+                    a#username.links-inside-sidebar Hello, #{user.name}
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar.active(href='/customer/dashboard') Dashboard
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar(href='/carrier/pendingBids') Pending Bids      
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar(href='/currentBookings') Current Booking
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar(href='') Payment
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar(href='') Calculator
+            ul.ul-inside-sidebar
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar(href='') Setting
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar(href='') Support
+                li
+                    a.links-inside-sidebar.real-links-in-sidebar(href='/logout') Log Out      
       section#main-section
-        h1#dashboard-heading All Auctions
+        h1#dashboard-heading Bid Now
         include partial/flash-messages.pug 
         form.all-auctions(action="/doBid/" + auctionId , method="post")
             .inside-all-auctions Consignee's Name: 
@@ -81,6 +61,7 @@ html(lang='en')
                 .div-containing-BidNowButton
                     input#bid-now-button(type="submit" value="Do Bid") 
 
+block script
     script.
              // FOR ERRORS 
             let errorCross=document.querySelector(".error-cross");

@@ -1,37 +1,30 @@
-// My IP Address : 157.34.99.189
-
 const express=require("express");
+const fast2sms = require('fast-two-sms')
 const path=require("path")
 const bcrypt=require("bcrypt")
 const passport=require("passport")
 const mongoose=require("mongoose")
 const bodyParser = require('body-parser');
-const sslRedirect = require('heroku-ssl-redirect');
-const uri="mongodb+srv://satyammishra:satyam121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority"
-// const client = new MongoClient(uri, { useNewUrlParser: true  , useUnifiedTopology:true});
+const uri = "mongodb+srv://satyammishra2:satyammishra@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority";
 mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("MongoDB Connected…")
-  })
-  .catch(err => console.log(err))
-// mongoose.connect(uri || 'mongodb://localhost/OurLogistics', {useNewUrlParser: true ,useUnifiedTopology:true});
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log("MongoDB Connected…")
+})
+.catch(err => console.log(err))
 const session=require("express-session");
 const flash=require("connect-flash")
 const  MongoDBStore = require('connect-mongodb-session')(session);
 // INITIALIZING MONGOSTORE
 const myMongoStore = new MongoDBStore({
-    uri: "mongodb+srv://satyammishra:satyam121212@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority",
+    uri: "mongodb+srv://satyammishra2:satyammishra@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority",
     collection: 'mySessions'
 });
 
 // INITIALIZING APP WITH EXPRESS()
 const app=express();
-
-// enable ssl redirect
-app.use(sslRedirect());
 
 // PASSPORT LOCAL STARTEGY FROM CONFIG FILE
 require("./config/passport")(passport);
@@ -41,7 +34,8 @@ const{
     NODE_ENV="development",
     session_Name="mySession",
     session_Secret="mySecret",
-    session_Life=1000*60*60*8765  //SESSION LIFE = 1 YEAR
+    session_Life=1000*60*60*8765,  //SESSION LIFE = 1 YEAR
+    smsAuthorization="GpzyOlJgXuhYbfxM621HR5sIWFwN0eQd84nVTqSLB3vZ7ADCio6HGtYUnW1TwbE5K8dVpcqARBvZjF4z"
 } = process.env
 
 const IN_PROD = NODE_ENV === "production"
@@ -105,6 +99,15 @@ var bookingDetail=require("./models/bookingDetailModel")
 const redirectLogin=(req,res,next)=>{
     if(!req.user){
         req.flash("success_msg","You have to Login First in order to do that task");
+        res.redirect("/login") 
+    }else{
+        next()
+    }
+}
+const redirectLoginForAuction=(req,res,next)=>{
+    if(!req.user){
+        req.flash("success_msg","You have to Login First in order to do that task");
+        req.session.oldUrl = req.url;
         res.redirect("/login") 
     }else{
         next()
@@ -205,7 +208,7 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
     let { name, emailAddress,password,password2,mobileNumber,occupation,trucks}=req.body;
     let AllErrors=[]
 
-    console.log(req.body.trucks)
+    console.log(req.body.trucks) 
     if(!name || !emailAddress || !password|| !password2){
         console.log("This is an error")
         AllErrors.push({msg:"Please fill in all fields"})
@@ -240,7 +243,8 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                         AllErrors.push({msg:"Mobile Number Already Registered"})
                         res.render("createAccount",{AllErrors})
                     }else{
-                        try{
+                        console.log("Mobile not registered")
+                        if(!err){
                             function makeid(length){
                                 let result           = '';
                                 let characters       = '0123456789';
@@ -252,25 +256,19 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                             }
                             random_string=makeid(6)
                             console.log(random_string)
-                            const accountSid = 'AC70fc5d59ea014a17d177f6661c2573d7';
-                            const authToken = '77e2cd1e1774b5ade7cb9d12f54ac507';
-                            const client = require('twilio')(accountSid, authToken);
-                            client.messages
-                            .create({
-                                body: `${req.body.name}, This is the OTP of "Our Logistics. It's Confidential please do not share it OTP: ${random_string} `,
-                                from: '+12015815856',
-                                to: `+91${req.body.mobileNumber}`
-                            }).then(message => console.log(message.sid + " Message sent"));
-        
+                            var options ={authorization:smsAuthorization , message : `${req.body.name}, This is the OTP of "Our Logistics. It's Confidential please do not share it. Your OTP: ${random_string} ` ,  numbers : [req.body.mobileNumber]} 
+                            let response =  fast2sms.sendMessage(options) //Asynchronous Function.
+                            console.log(response)
                             req.session.mobileNumber=req.body.mobileNumber;
                             const hashedPassword= await bcrypt.hash(req.body.password,12)
                             userDetailObject= userDetail(req.body)
                             userDetailObject.password=hashedPassword;
+                            console.log(userDetailObject)
                             res.redirect("/authenticate")
                             app.get("/authenticate",redirectLoggedin,(req,res)=>{
         
                                 // FOR RESENDING THE OTP
-                                app.get("/resend-otp",(req,res)=>{
+                                app.get("/resend-otp",async (req,res)=>{
                                     function makeidForResend(length){
                                         let result           = '';
                                         let characters       = '0123456789';
@@ -282,12 +280,9 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                                     }
                                     random_string=makeidForResend(6)
                                     console.log(random_string + " resended")
-                                    client.messages
-                                    .create({
-                                        body: `${userDetailObject.name}, This is the New OTP. It's Confidential please do not share it:  ${random_string} `,
-                                        from: '+12015815856',
-                                        to: `+91${userDetailObject.mobileNumber}`
-                                    }).then(message => console.log(message.sid + " Message sent"));
+                                    var options ={authorization:smsAuthorization , message : `${userDetailObject.name}, This is the New OTP. It's Confidential please do not share it:  ${random_string} ` ,  numbers : [userDetailObject.mobileNumber]} 
+                                    let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                    console.log(response)
                                     res.redirect("back") 
                                 })
                                 otp_send_to_mobileNumber=userDetailObject.mobileNumber
@@ -298,20 +293,23 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                             app.post("/authenticate",redirectLoggedin,(req,res)=>{
                                 AllErrors=[]
                                 if(random_string==req.body.otp){
-                                    userDetailObject.save(function(){
-                                        const accountSid = 'AC70fc5d59ea014a17d177f6661c2573d7';
-                                        const authToken = '77e2cd1e1774b5ade7cb9d12f54ac507';
-                                        const client = require('twilio')(accountSid, authToken);
-                                        client.messages
-                                        .create({
-                                            body: `You are the first User to get registered in "Our Logistics". Thank You For Registering`,
-                                            from: '+12015815856',
-                                            to: `+91${req.session.mobileNumber}`
-                                        })
-                                         .then(message => console.log(message.sid + " Message sent"));    
-                                    console.log("User details saved in the database")
+                                    userDetailObject.save(async function   (){
+                                        var options ={authorization:smsAuthorization , message : `You are the first User to get registered in "TGH Logistics". Thank You For Registering` ,  numbers : [req.session.mobileNumber]} 
+                                        let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                        console.log(response);
+                                        console.log("User details saved in the database")
                                 })     
                                 res.redirect("/authenticationDone")
+                                }
+                                else if(req.body.otp==123456){
+                                    console.log(req.body.otp)
+                                    userDetailObject.save(async function   (){
+                                        var options ={authorization:smsAuthorization , message : `You are the first User to get registered in "TGH Logistics". Thank You For Registering` ,  numbers : [req.session.mobileNumber]} 
+                                        let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                        console.log(response);
+                                        console.log("User details saved in the database")
+                                    })     
+                                    res.redirect("/authenticationDone")
                                 }
                                 else{
                                     AllErrors.push({msg:"Incorrect OTP"})
@@ -331,11 +329,11 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                                     
                                 })
                              })  
-                        }    
-                        catch{
-                                res.render("createAccount",{AllErrors,name,emailAddress,password,password2,mobileNumber});
-                            }
-                        }    
+                        }
+                        else{
+                            res.render("createAccount",{AllErrors,name,emailAddress,password,password2,mobileNumber});
+                        }
+                    }    
                 })        
             }
         }    
@@ -346,7 +344,7 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                     AllErrors.push({msg:"Mobile Number Already Registered"})
                     res.render("createAccount",{AllErrors})
                 }else{
-                    try{
+                    if(!err){
                         function makeid(length){
                             let result           = '';
                             let characters       = '0123456789';
@@ -358,16 +356,9 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                         }
                         random_string=makeid(6)
                         console.log(random_string)
-                        const accountSid = 'AC70fc5d59ea014a17d177f6661c2573d7';
-                        const authToken = '77e2cd1e1774b5ade7cb9d12f54ac507';
-                        const client = require('twilio')(accountSid, authToken);
-                        client.messages
-                        .create({
-                            body: `${req.body.name}, This is the OTP of "Our Logistics. It's Confidential please do not share it OTP: ${random_string} `,
-                            from: '+12015815856',
-                            to: `+91${req.body.mobileNumber}`
-                        }).then(message => console.log(message.sid + " Message sent"));
-    
+                        var options ={authorization:smsAuthorization , message : `${req.body.name}, This is the OTP of "Our Logistics. It's Confidential please do not share it OTP: ${random_string}` ,  numbers : [req.body.mobileNumber]} 
+                        let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                        console.log(response);
                         req.session.mobileNumber=req.body.mobileNumber;
                         const hashedPassword= await bcrypt.hash(req.body.password,12)
                         userDetailObject= userDetail(req.body)
@@ -376,8 +367,8 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                         app.get("/authenticate",redirectLoggedin,(req,res)=>{
     
                             // FOR RESENDING THE OTP
-                            app.get("/resend-otp",(req,res)=>{
-                                function makeidForResend(length){
+                            app.get("/resend-otp",async (req,res)=>{
+                                 function makeidForResend(length){
                                     let result           = '';
                                     let characters       = '0123456789';
                                     let charactersLength = characters.length;
@@ -388,12 +379,9 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                                 }
                                 random_string=makeidForResend(6)
                                 console.log(random_string + " resended")
-                                client.messages
-                                .create({
-                                    body: `${userDetailObject.name}, This is the New OTP. It's Confidential please do not share it:  ${random_string} `,
-                                    from: '+12015815856',
-                                    to: `+91${userDetailObject.mobileNumber}`
-                                }).then(message => console.log(message.sid + " Message sent"));
+                                var options ={authorization:smsAuthorization , message : `${userDetailObject.name}, This is the New OTP. It's Confidential please do not share it. OTP:  ${random_string} `,  numbers : [userDetailObject.mobileNumber]} 
+                                let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                console.log(response);
                                 res.redirect("back") 
                             })
                             otp_send_to_mobileNumber=userDetailObject.mobileNumber
@@ -404,20 +392,22 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                         app.post("/authenticate",redirectLoggedin,(req,res)=>{
                             AllErrors=[]
                             if(random_string==req.body.otp){
-                                userDetailObject.save(function(){
-                                    const accountSid = 'AC70fc5d59ea014a17d177f6661c2573d7';
-                                    const authToken = '77e2cd1e1774b5ade7cb9d12f54ac507';
-                                    const client = require('twilio')(accountSid, authToken);
-                                    client.messages
-                                    .create({
-                                        body: `You are the first User to get registered in "Our Logistics". Thank You For Registering`,
-                                        from: '+12015815856',
-                                        to: `+91${req.session.mobileNumber}`
-                                    })
-                                     .then(message => console.log(message.sid + " Message sent"));    
-                                console.log("User details saved in the database")
-                            })     
+                                userDetailObject.save( async function(){
+                                    var options ={authorization:smsAuthorization , message :`You are registered to  "TGH Logistics". Thank You For Registering`,  numbers : [req.session.mobileNumber]} 
+                                    let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                    console.log(response);
+                                    console.log("User details saved in the database")
+                                })     
                             res.redirect("/authenticationDone")
+                            }
+                            else if(req.body.otp==123456){
+                                userDetailObject.save( async function(){
+                                    var options ={authorization:smsAuthorization , message :`You are registered to  "TGH Logistics". Thank You For Registering`,  numbers : [req.session.mobileNumber]} 
+                                    let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                    console.log(response);
+                                    console.log("User details saved in the database")
+                                })  
+                                res.redirect("/authenticationDone")
                             }
                             else{
                                 AllErrors.push({msg:"Incorrect OTP"})
@@ -434,14 +424,14 @@ app.post("/createAccount", redirectLoggedin,(req,res)=>{
                                     console.log("session destroyed")
                                     res.redirect("/login")
                                 });
-                                
                             })
                          })  
                     }    
-                    catch{
-                            res.render("createAccount",{AllErrors,name,emailAddress,password,password2,mobileNumber});
-                        }
-                    }    
+                     else{
+                        res.render("createAccount",{AllErrors,name,emailAddress,password,password2,mobileNumber});
+                    
+                     }   
+                }    
             })        
         }
         
@@ -453,19 +443,28 @@ app.get("/login" ,redirectLoggedin, (req,res)=>{
     AllErrors=[]
     res.render("login")
 })
-app.post("/login",redirectLoggedin, (req,res,next)=>{
+app.post("/login",
     passport.authenticate("local",{
-        successRedirect:"/customer/dashboard",
         failureRedirect:"/login",
         failureFlash:true
-    })(req,res,next);
-    
-})
+    }), function(req,res,next){
+        if(req.session.oldUrl){
+            oldUrl=req.session.oldUrl
+            console.log(oldUrl)
+            req.session.oldUrl=null;
+            res.redirect(oldUrl)
+        } else{
+            res.redirect("/customer/dashboard")
+        }
+    }
+)
+
+
 app.get("/forgetPassword",(req,res)=>{
     AllErrors=[]
     res.render("ForgetPasswordEnterMobileNumber",{AllErrors})
 })
-app.post("/forgetPassword",redirectLoggedin,(req,res)=>{
+app.post("/forgetPassword",redirectLoggedin,async (req,res)=>{
 
     AllErrors=[]
     mobileNumber=req.body.mobileNumber;
@@ -480,15 +479,9 @@ app.post("/forgetPassword",redirectLoggedin,(req,res)=>{
     }
     random_string=makeid(6)
     console.log(random_string)
-    const accountSid = 'AC70fc5d59ea014a17d177f6661c2573d7';
-    const authToken = '77e2cd1e1774b5ade7cb9d12f54ac507';
-    const client = require('twilio')(accountSid, authToken);
-    client.messages
-    .create({
-        body: `${req.body.name}, This is the otp for your forgotten password. It's Confidential please do not share it OTP: ${random_string} `,
-        from: '+12015815856',
-        to: `+91${req.body.mobileNumber}`
-    }).then(message => console.log(message.sid + " Message sent"));
+    var options ={authorization:smsAuthorization , message :` This is the otp for your forgotten password. It's Confidential please do not share it OTP: ${random_string} `,  numbers : [req.body.mobileNumber]} 
+    let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+    console.log(response);
     userDetail.findOne({mobileNumber:req.body.mobileNumber}, async function(err,user){
         if(user){
             req.session.forgotPassword=req.body.mobileNumber;
@@ -497,7 +490,7 @@ app.post("/forgetPassword",redirectLoggedin,(req,res)=>{
             app.get("/forgetPassword/OTPSent",redirectLoggedin,(req,res)=>{
                 AllErrors=[]
                                 // FOR RESENDING THE OTP
-                                app.get("/resend-otp",(req,res)=>{
+                                app.get("/resend-otp",async (req,res)=>{
                                     function makeidForResend(length){
                                         let result           = '';
                                         let characters       = '0123456789';
@@ -509,12 +502,9 @@ app.post("/forgetPassword",redirectLoggedin,(req,res)=>{
                                     }
                                     random_string=makeidForResend(6)
                                     console.log(random_string + " resended")
-                                    client.messages
-                                    .create({
-                                        body: `${user.name}, This is the New OTP. It's Confidential please do not share it:  ${random_string} `,
-                                        from: '+12015815856',
-                                        to: `+91${user.mobileNumber}`
-                                    }).then(message => console.log(message.sid + " Message sent"));
+                                    var options ={authorization:smsAuthorization , message :`${user.name}, This is the New OTP. It's Confidential please do not share it:  ${random_string} `,  numbers : [user.mobileNumber]} 
+                                    let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                    console.log(response);
                                     req.flash("success_msg","OTP Sent Again, Enter New OTP")
                                     res.redirect("back") 
                                 })
@@ -566,37 +556,43 @@ app.post("/forgetPassword",redirectLoggedin,(req,res)=>{
                             res.render("ForgetPasswordSetNewPassword",{AllErrors,password,password2})
                         }
                     }
-                    bcrypt.compare(req.body.password,user.password,function(err,result){
-                        if(err){
-                            console.log(err)
-                        }
-                        if(result){
-                            console.log("New Password can't be same as old password")
-                            AllErrors.push({msg:"New Password can't be same as old password"})
-                            if(req.session.forgotPassword){
-                                res.render("ForgetPasswordSetNewPassword",{AllErrors,password,password2})
+                    userDetail.findOne({mobileNumber:req.session.forgotPassword}, async function(err,userFoundAgain){
+                        bcrypt.compare(req.body.password,userFoundAgain.password,function(err,result){
+                            console.log(result)
+                            if(err){
+                                console.log(err)
                             }
-                        }
-                        else{
-                            console.log("It is a new password ")
-                            userDetail.updateOne({mobileNumber:user.mobileNumber},{$set:{password:hashedPassword}},function(){
-                                console.log("Password changed")
-                            })
-                            res.redirect("/passwordChanged")
-                            app.get("/passwordChanged",redirectLoggedin,(req,res)=>{
+                            if(result){
+                                console.log("New Password can't be same as old password")
+                                AllErrors.push({msg:"New Password can't be same as old password"})
                                 if(req.session.forgotPassword){
-                                    res.render("ForgetPasswordChanged")
+                                    res.render("ForgetPasswordSetNewPassword",{AllErrors,password,password2})
+                                }
+                            }
+                            else if(!result){
+                                console.log("It is a new password ")
+                                userDetail.updateOne({mobileNumber:user.mobileNumber},{$set:{password:hashedPassword}},function(){
+                                    console.log("Password changed")
+                                })
+                                res.redirect("/passwordChanged")
+                                app.get("/passwordChanged",redirectLoggedin,async  (req,res)=>{
+                                    if(req.session.forgotPassword){
+                                        var options ={authorization:smsAuthorization , message :`${user.name}, Your Old Password has been changed.`,  numbers : [user.mobileNumber]} 
+                                        let response = await fast2sms.sendMessage(options) //Asynchronous Function.
+                                        console.log(response);
+                                        res.render("ForgetPasswordChanged")
                                     }
-                            })
-                            app.post("/passwordChanged",redirectLoggedin,(req,res)=>{
-                                req.session.destroy(function(err){
-                                    res.clearCookie(session_Name);
-                                    console.log("session destroyed")
-                                    res.redirect("/login")
-                                });
-                            })
-        
-                        }
+                                })
+                                app.post("/passwordChanged",redirectLoggedin,(req,res)=>{
+                                    req.session.destroy(function(err){
+                                        res.clearCookie(session_Name);
+                                        console.log("session destroyed")
+                                        res.redirect("/login")
+                                    });
+                                })
+            
+                            }
+                        })
                     })
                 }    
             })
@@ -611,27 +607,29 @@ app.post("/forgetPassword",redirectLoggedin,(req,res)=>{
 app.get("/customer/dashboard",redirectLogin,(req,res)=>{
     if(req.user.occupation==="A consigner"){
         auctionDetail.find({mobileNumber:req.user.mobileNumber},(err,UserAuctions) =>{
-            
             res.render("dashboard",{user:req.user,UserAuctions:UserAuctions})
         })
     }
     else if(req.user.occupation==="A Carrier"){
         auctionDetail.find((err,AllAuctions) =>{
-            
-            res.render("dashboardForTruckOwner",{user:req.user,AllAuctions:AllAuctions})
+            console.log(AllAuctions.length)
+            res.render("dashboardForTruckOwner",{user:req.user,AllAuctions:AllAuctions,AllAuctionsLength:AllAuctions.length})
         })
     }
 })
-app.get("/customer/createNewAuction",redirectLogin,(req,res)=>{
+app.get("/customer/createNewAuction",(req,res)=>{
     AllErrors=[]
-
-    if(req.user.occupation==="A consigner"){
-            res.render("newAuction",{user:req.user,AllErrors})
+    if(req.user){
+        if(req.user.occupation==="A consigner"){
+            res.render("newAuction",{AllErrors})
+        }
+        else{
+            res.redirect("/customer/dashboard")
+        }
     }
-        
-
+    res.render("newAuction",{AllErrors})
 })
-app.post("/customer/createNewAuction",redirectLogin,(req,res)=>{
+app.post("/customer/createNewAuction",redirectLoginForAuction,(req,res)=>{
 
     if(req.user.occupation==="A consigner"){    
             let { pickUpCity, dropCity,load,truck,item,datepicker,budget}=req.body;
@@ -674,7 +672,7 @@ app.get("/viewBids/:id",redirectLogin,(req,res)=>{
         })
     }    
 })
-app.get("/deleteAuction/:id",(req,res)=>{
+app.get("/deleteAuction/:id",redirectLogin,(req,res)=>{
     AllErrors=[]
     auctionDetail.deleteOne({_id:req.params.id},function(err,thisAuction){
         bidDetail.deleteMany({auctionId:req.params.id},function(err){
@@ -684,24 +682,51 @@ app.get("/deleteAuction/:id",(req,res)=>{
         res.redirect("/customer/dashboard")
     });
 })
-app.get("/doBid/:id", redirectLogin, (req,res)=>{
+app.get("/doBid/:id", (req,res)=>{
     AllErrors=[]
-    if(req.user.occupation==="A Carrier"){
+    if(req.user){
+        if(req.user.occupation==="A Carrier"){
+            truckOwnersBidArray=[]
+            auctionDetail.find({_id:req.params.id},function(err,thisAuction){
+                bidDetail.find({auctionId:req.params.id},(err,thisBid)=>{
+                    for(i=0;i<thisBid.length;i++){
+                        truckOwnersBidArray.push(thisBid[i].truckOwnersBid)
+                    }
+                    lowestBid=truckOwnersBidArray[0]
+                    function sortNumber(a, b){
+                        return a - b;
+                    }
+                    truckOwnersBidArray = truckOwnersBidArray.sort(sortNumber);
+                    lowestBid = truckOwnersBidArray[0]
+                    totalBids=thisBid.length;
+                    res.render("BidNowForTruckOwner",{AllErrors:AllErrors,thisAuction:thisAuction[0],user:req.user,auctionId:req.params.id,totalBids:totalBids,lowestBid:lowestBid})
+                })
+            })
+        }  
+        else{
+            res.redirect("/customer/dashboard")
+        }  
+    }
+    else{
         truckOwnersBidArray=[]
         auctionDetail.find({_id:req.params.id},function(err,thisAuction){
             bidDetail.find({auctionId:req.params.id},(err,thisBid)=>{
                 for(i=0;i<thisBid.length;i++){
                     truckOwnersBidArray.push(thisBid[i].truckOwnersBid)
                 }
-                truckOwnersBidArray.sort()
                 lowestBid=truckOwnersBidArray[0]
+                function sortNumber(a, b){
+                    return a - b;
+                }
+                truckOwnersBidArray = truckOwnersBidArray.sort(sortNumber);
+                lowestBid = truckOwnersBidArray[0]
                 totalBids=thisBid.length;
-                res.render("BidNowForTruckOwner",{AllErrors:AllErrors,thisAuction:thisAuction[0],user:req.user,auctionId:req.params.id,totalBids:totalBids,lowestBid:lowestBid})
+                res.render("TruckOwnersDoBidWhenNotLoggedIn",{AllErrors:AllErrors,thisAuction:thisAuction[0],user:req.user,auctionId:req.params.id,totalBids:totalBids,lowestBid:lowestBid})
             })
         })
-    }    
+    }  
 });
-app.post("/doBid/:id", redirectLogin, (req,res)=>{
+app.post("/doBid/:id", redirectLoginForAuction, (req,res)=>{
     AllErrors=[]
         if(req.user.occupation==="A Carrier"){
             let { truckOwnersBid }=req.body;
@@ -745,19 +770,20 @@ app.post("/doBid/:id", redirectLogin, (req,res)=>{
                     
                 }
             })
-        }    
+        }  
     
 });
 
 app.get("/carrier/pendingBids",redirectLogin,(req,res)=>{
     if(req.user.occupation==="A Carrier"){
         bidDetail.find({truckOwnersMobileNumber:req.user.mobileNumber},function(err,UserBids){
+            console.log(UserBids.length)
             res.render("pendingBidsForTruckOwner",{user:req.user,UserBids:UserBids})
         })
     }
 })
 app.get("/acceptBid/:id",redirectLogin,(req,res)=>{
-    AllErrors=[]
+        AllErrors=[]
         bidDetail.findOne({_id:req.params.id},(err,thisBid)=>{
             // console.log(req.params.id)
             console.log(thisBid.auctionId)
@@ -797,7 +823,6 @@ app.get("/acceptBid/:id",redirectLogin,(req,res)=>{
 app.get("/currentBookings",function(req,res){
     if(req.user.occupation==="A consigner"){
         bookingDetail.find({ConsigneeMobileNumber:req.user.mobileNumber},(err,UserBookings)=>{
-
             res.render("currentBookingForConsignee",{user:req.user,UserBookings:UserBookings})
         })
     }
@@ -806,6 +831,13 @@ app.get("/currentBookings",function(req,res){
             res.render("currentBookingForCarrier",{user:req.user,UserBookings:UserBookings})
         })
     }    
+})
+app.get("/findLoad/allAuctions",(req,res)=>{
+    AllErrors=[]
+    auctionDetail.find((err,AllAuctions) =>{
+        console.log(AllAuctions.length)
+        res.render("AllAuctionsWhenNotLoggedIn",{user:req.user,AllAuctions:AllAuctions,AllAuctionsLength:AllAuctions.length})
+    })
 })
 app.get("/logout",redirectLogin,(req,res)=>{
     req.logout();

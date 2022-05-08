@@ -1,6 +1,6 @@
 let occupation=document.getElementById("occupation")
 let truckOption=document.getElementById("truckOption")
-// let trucks=document.getElementById("trucks")
+let trucks=document.getElementById("trucks")
 
 trucks.addEventListener("input",(e)=>{
     console.log(e.target.value)
@@ -23,4 +23,3 @@ errorCross.addEventListener("click",()=>{
     errorCross.parentElement.style.display="none";
     nameInput.focus()
 })
-

@@ -1,0 +1,223 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#navbar{
+    background-color: white;
+}
+
+#main-section-of-all-auction-when-not-logged-in{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 60vh;
+    background-color: white;
+}
+#allAuction-heading {
+    font-weight: 100;
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+table{
+    width: 70%;
+    font-family: 'Arvo', serif;
+    margin-top: 1.5rem;
+    border: 0;
+}
+thead{
+    background-color: var(--primary-color);
+    color: white;
+}
+th{
+    padding: 8px 0;
+}
+tbody{
+    
+}
+td{
+    text-align: center;
+}
+td a{
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+}
+td a:hover{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+
+}
+#below-footer-section {
+    display: flex;
+}
+@media screen and (max-width: 1100px) {
+    table {
+        width: 95%;
+    }
+}
+@media screen and (max-width: 950px) {
+    #main-section-of-all-auction-when-not-logged-in {
+        margin-top: 75px;
+
+    }
+    #allAuction-heading {
+        font-size: 2rem;
+    }
+}
+@media screen and (max-width: 748px) {
+
+    table { 
+        border: 0; 
+        width: 95%;
+    }
+    
+    table thead { display: none; }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+      color: #df6327;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+
+    }
+    
+    table td:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding-right: 80px;
+      color: #143d59;
+    }
+    table td:last-child { 
+        border-bottom: 0; 
+    } 
+}
+
+/* FOR DO BID PAGE WHEN NOT LOGGED IN */
+#map{
+    height: 100vh;
+    width: 50%;
+}
+#main-section-of-do-bid-when-not-logged-in{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: white;
+    margin-top: 76px;
+    padding-bottom: 10px;
+}
+#main-section-of-do-bid-when-not-logged-in #dashboard-heading{
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.inside-all-auctions{
+    font-size: 20px;
+}
+#do-bidding-div{
+    padding: 16px;
+    box-shadow: 0 4px 26px 0 rgba(6, 6, 6, 0.28), 0 0 0 transparent;
+    border-radius: 20px;
+    margin: 2.5rem 0;
+}
+.all-auctions{
+    font-family: 'Arvo', serif;
+    margin-top: 1.5rem;
+}
+.all-auctions span{
+    color: #df6327;
+
+}
+.input-div{
+    margin-bottom: 0.5rem;
+}
+#budget{
+    padding: 10px; 
+    outline: none;
+    font-size: 1.3rem;
+    border: 2px solid black;
+    box-sizing: border-box;
+    width: 100%;
+}
+#budget:hover{
+    border: 2px solid var(--secondary-color);
+    outline: var(--primary-color);
+}
+#budget:focus-within{
+     border: 2px solid var(--secondary-color);
+}
+#bid-now-button{
+     font-size: 1.3rem;
+     cursor: pointer;
+     background-color: var(--secondary-color);
+     outline: none;
+     box-sizing: border-box;
+     border: none;
+     font-family: 'Arvo', serif;
+     font-size: 1.2rem;
+     color: white;
+     text-decoration: none;
+     width: 100%;
+     padding: 10px;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center; 
+ }
+ #bid-now-button:hover{
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+.errors{
+    display: flex;
+    border: 2px solid #dac9c9;
+    align-items: center;
+    background-color: #a98633;
+    justify-content: space-between;
+    margin: 3px 0px;
+    margin-top: 10px;
+    padding: 0 10px;
+    padding-right: 0;
+}
+.error-message{
+    font-size: 20px;
+    font-family: 'Arvo', serif;
+}
+.error-cross{
+    font-size: 25px;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin-left: 10px;
+}
+.error-cross:hover{
+    background-color: #ab3a3a;
+}
+
+@media only screen and (max-width: 550px){
+    .all-auctions span{
+        display: block;
+    }
+}
+

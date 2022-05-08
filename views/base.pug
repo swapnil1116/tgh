@@ -1,102 +1,79 @@
-doctype html
+﻿doctype html
 html(lang='en')
   head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title Our Logistics
+    meta(name="google-site-verification" , content="TKzDbLJih_QfbAHqVbE084VmDbdXsAa0KCU40eyVKGg")
     block style    
-        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-        link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
-        link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
         link(rel='stylesheet', href='../static/style/homeStyle.css')
+
   body
-    #outermost
+    #outermost1.outermost
+    #outermost2.outermost 
     nav#navbar
       #navbar-overlay
       #inside-navbar
         #logo
-          h1 Our  Logistics 
-        #nav-contents
+          img.logo-image(src="../static/img/realLogo.jpg", alt="", srcset="")
+        #nav-contents.navbar-section-below-950px
           ul
-            li.nav-list-items
-              a#company(href='')
+            li.nav-list-items.nav-list-items-containing-links-of-pages
+              a#company.main-anchor-tags-having-dropdown-links(href='')
                 | Our Company
-                i.fa.fa-angle-down.arrow-down.arrow-in-shop-login
-            li.nav-list-items
-              a#home(href='')
+                i.fa.fa-angle-down.arrow-down.arrows-in-main-navbar
+              ul.list-of-items-inside-services-and-others
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') About us 
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') Contact
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') Careers
+            li.nav-list-items.nav-list-items-containing-links-of-pages
+              a#home.main-anchor-tags-having-dropdown-links(href='')
                 | Services
-                i.fa.fa-angle-down.arrow-down.arrow-in-shop-login
+                i.fa.fa-angle-down.arrow-down.arrows-in-main-navbar
+              ul.list-of-items-inside-services-and-others
+                li.all-items-of-services-and-others-on-hover
+                  a(href='')  Bidding Enquiry 
+                li.all-items-of-services-and-others-on-hover
+                  a(href='')  GPS Enquiry
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') Truck Enquiry
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') FasTag Enquiry
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') Revolution In Logistics 
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') Price Calculator 
+                li.all-items-of-services-and-others-on-hover
+                  a(href='') Why TrucGo Havens? 
             li.nav-list-items
-              a#tracking(href='')
-                | Tracking
-                // <i class="fa fa-angle-down arrow-down arrow-in-shop-login"></i>
+              a.anchor-inside-li-in-navbar-without-any-other-links(href='') Tracking
             li.nav-list-items
-              a#tracking(href='')
-                | Help Center
-                // <i class="fa fa-angle-down arrow-down arrow-in-shop-login"></i>
+              a.anchor-inside-li-in-navbar-without-any-other-links(href='') Help Center
             li.nav-list-items
-              if user
-                a#signin-button(href='/customer/dashboard')
-                  | Your Account
-              else  
-                a#signin-button(href='/login')
-                  | Sign In
-            li.nav-list-items
-              a#search-icon-navbar(href='')
-                i.fa.fa-search
-    #div-for-search
-      #div-inside-search-div
-        input#navbar-search(type='text', name='navbar-search', autofocus='', placeholder='Search here...')
-        span#cross-navbar-search ✕
-    // HOVER ON OUR COMPANY IN BUTTON
-    section#hover-on-company
-      .div-inside-section-of-navbar-links
-        #arrow
-          .arrow-up
-        .Allitems-ofdiv-inside-section-of-navbar-links
-          ul#list-of-hoverLogin
-            a.item-hoverShop(href='')
-              li About Us
-            a.item-hoverShop(href='')
-              li Contact
-            a.item-hoverShop(href='')
-              li#lastItemOfHoverShop Careers
-    // HOVER ON OUR SERVICES IN BUTTON
-    section#hover-on-home
-      .div-inside-section-of-navbar-links
-        #arrow
-          .arrow-up
-        .Allitems-ofdiv-inside-section-of-navbar-links
-          ul#list-of-hoverLogin
-            a.item-hoverShop(href='')
-              li  Bidding Enquiry
-            a.item-hoverShop(href='')
-              li  GPS Enquiry
-            a.item-hoverShop(href='')
-              li  Truck Enquiry
-            a.item-hoverShop(href='')
-              li Fastag Enquiry
-            a.item-hoverShop(href='')
-              li Revolution In Logistics
-            a.item-hoverShop(href='')
-              li Price Calculator
-            a.item-hoverShop(href='')
-              li#lastItemOfHoverShop Why Our Logistics?
+              a.signin-button(href='/login' target=" ")
+                | Sign In
+        .bars(onclick='navbarBelow950px(this)')
+          .bar1
+          .bar2
+          .bar3
+
     block content
     footer
       #main-div-inside-footer
         .divs-in-footer
           h2 More Information
-          .div-with-links
+          .div-with-links(data-aos='fade-up')
             a(href='') Contact us
             a(href='') About us
-            a(href='') TrucGo Policies
+            a(href='') Return Policy
             a(href='') Terms of use
             a(href='') Careers
             a(href='') Press Releases
         .divs-in-footer
           h2 Our Services
-          .div-with-links
+          .div-with-links(data-aos='fade-up')
             a(href='') Transport Services
             a(href='') Logistic Services
             a(href='') Bidding Services
@@ -104,17 +81,126 @@ html(lang='en')
             a(href='') Part Load Services
         .divs-in-footer
           h2 Let Us Help You
-          .div-with-links
+          .div-with-links(data-aos='fade-up')
             a(href='') Customer Care
             a(href='') Payments
-            a(href='') 100% Shipment Protection
-            a(href='') Expansion In Business
+            a(href='') Shipping
+            a(href='') 100% Purchase Protection
+            a(href='') Return Center
+    section#below-footer-section
+      .divs-inside-below-footer-section
+        #stay-connected
+          h1 Wanna stay connected with "TGH"?
+        - var user = {AllErrors:AllErrors, name: name , emailAddress:emailAddress}    
+        include partial/flash-messages.pug 
+        form#subscribe-email(method='POST', action='/' , onsubmit="return true")
+          .divs-inside-subscribe-email
+            input#name(type='text' , name="name", value=user.name , placeholder='Enter Your Name' , autofocus="" )
+          .divs-inside-subscribe-email
+            input#emailAddress(type='text', name="emailAddress" , value=user.emailAddress , placeholder='Enter Your Email')
+          #div-for-subscribe-button.divs-inside-subscribe-email
+            button(type='submit' onsubmit="myFunction()") Subscribe
+ 
+      .divs-inside-below-footer-section
+        #div-social-media-links.div-with-links
+          // Add font awesome icons
+          a.fa.fa-facebook(href='#')
+          a.fa.fa-twitter(href='https://twitter.com/TGHLogistics?s=08')
+          a.fa.fa-instagram(href='https://instagram.com/tghlogistics?igshid=15onc67zs9u7i')
+          a.fa.fa-linkedin(href='https://www.linkedin.com/in/tgh-logistics-b360451b4')
+      .divs-inside-below-footer-section
+        #copyrights
+          | © All Rights Reserved TGH Logistics Pvt. Ltd. 2020                
+
+    #sign-in-try-now-buttons-in-mobile-screen
+      .sign-in-try-now-button-divs
+        a.signin-button(href='/login' target=" ")
+          | Sign In
+      .sign-in-try-now-button-divs
+        a#try-now-button.signin-button(href='/createAccount' target=" ")
+          | Try Now
     // PHONE CALL IN THE SIDE OF THE SCREEN
     section#phone-call
       #div-inside-phone-call
         a(href='tel:+919340618228')
           img(src='../static/img/phone.svg', alt='')
+    // SIDEBAR STARTS FROM HERE ON
+    section.sidebar-section
+      #sidebar-wrapper
+      .logo.logo-inside-sidebar
+        a(href='')
+          #image-div-logo-inside-sidebar
+            img.logo-image-in-sidebar(src="../static/img/realLogo.jpg", alt="", srcset="")
+
+      #navbar-items
+        ul
+          li.main-li-of-sidebar
+            .containing-links-of-pages-and-arrow
+              a(href='')
+                span Our Company
+              .div-containing-arrow-down-in-sidebar.arrow-down
+                span.arrows
+            ul.list-of-items-inside-services-and-others-in-sidebar
+              li.all-items-of-services-and-others-on-hover
+                a(href='') About us
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  Contact  
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  Careers
+          li.main-li-of-sidebar
+            .containing-links-of-pages-and-arrow
+              a(href='tel:+919340618228')
+                span Services
+              .div-containing-arrow-down-in-sidebar.arrow-down
+                span.arrows
+            ul.list-of-items-inside-services-and-others-in-sidebar
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  Bidding Enquiry 
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  GPS Enquiry
+              li.all-items-of-services-and-others-on-hover
+                a(href='') Truck Enquiry
+              li.all-items-of-services-and-others-on-hover
+                a(href='') FasTag Enquiry 
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  Revolution In Logistics
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  Price Calculator 
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  Why TGH? 
+          li.main-li-of-sidebar
+            .containing-links-of-pages-and-arrow
+              a(href='')
+                span Tracking
+              .div-containing-arrow-down-in-sidebar.arrow-down
+                span.arrows
+            ul.list-of-items-inside-services-and-others-in-sidebar
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  Track Your Trucks 
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  How Tracking Works?
+              li.all-items-of-services-and-others-on-hover
+                a(href='') Consulatncy
+          li.main-li-of-sidebar
+            .containing-links-of-pages-and-arrow
+              a(href='tel:+919340618228')
+                span Help Center
+              .div-containing-arrow-down-in-sidebar.arrow-down
+                span.arrows
+            ul.list-of-items-inside-services-and-others-in-sidebar
+              li.all-items-of-services-and-others-on-hover
+                a(href='tel:+919340618228') Customer Care 
+              li.all-items-of-services-and-others-on-hover
+                a(href='')  How Bidding Works?
+              li.all-items-of-services-and-others-on-hover
+                a(href='') FAQs
+              li.all-items-of-services-and-others-on-hover
+                a(href='tel:+919340618228') Call Now 
     block script
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
+        script(src='https://unpkg.com/aos@next/dist/aos.js')
         script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous')
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous')
         script(src='../static/script/homeScript.js')          

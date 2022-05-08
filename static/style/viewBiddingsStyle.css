@@ -65,3 +65,22 @@
 .error-cross:hover{
     background-color: #ab3a3a;
 }
+
+@media only screen and (max-width:1210px){
+    .divs-containing-input {
+        width: 40%;
+    }
+}
+@media only screen and (max-width:850px){
+  
+    .divs-containing-input {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .divs-containing-input {
+        width: 100%;
+    }
+
+}

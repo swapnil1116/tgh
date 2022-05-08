@@ -1,130 +1,124 @@
-extends base.pug
+﻿extends base.pug
 block style
-    link(rel='stylesheet', href='../static/style/homeStyle.css')
+    title TGH Logistics
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-    link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
-    link(href='https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap', rel='stylesheet')
-  
+    link(rel='stylesheet', href='https://unpkg.com/aos@next/dist/aos.css')
+    link(rel='stylesheet', href='../static/style/homeStyle.css')
 block content
+    // MAIN SECTION FROM HERE
     section#main-section
       #main-section-overlay
+
       #heading-inside-main-section
-        h1 It's Your World, Make It Amazing.
-        h3 India’s 1st Online Booking Platform with Live Bidding
+        h1 TGH Logistics
+        h3 Go Beyond
         #main-buttons
-          button#transferer For Transferer
-          button#transporter For Transporter
+          a(href='/customer/createNewAuction')#transferer For Consigner
+          a(href='/findLoad/allAuctions')#transporter For Carrier
     section#why-us-section
       #div-inside-why-us-section
         #heading-inside-why-us-section
-          h1 Why "Our Logistics"?
+          h1 Why "TGH"?
         #All-points-of-why-us-section
-          .point-of-why-us-section
-            .image-inside-point-of-why-us-section
-              img(src='../static/img/trust.jpg', alt='')
-            .percent-inside-point-of-why-us-section
-              h6 We are
-              h1
-                | 100
-                span %
-            .topic-inside-why-us-section Trust Worthy
+          .point-of-why-us-section(data-aos='fade-right' data-aos-duration="400" data-aos-offset="0")
+            .divs-inside-point-of-why-us-section
+              .image-inside-point-of-why-us-section
+                img(src='../static/img/trust.jpg', alt='')
+              .percent-inside-point-of-why-us-section
+                div
+                  h6 We are
+                  h1 100
+                  h6.percentages-in-why-us-sections %
+                .topic-inside-why-us-section Trust Worthy
             .keypoints-inside-why-us-section
               h6 Because of
               ul
                 li.list-items-inside-keypoints-of-why-us-section Assured Payments
                 li.list-items-inside-keypoints-of-why-us-section Safety Of Your Goods
                 li.list-items-inside-keypoints-of-why-us-section Our Highly Skilled Team
-          .point-of-why-us-section
-            .image-inside-point-of-why-us-section
-              img(src='../static/img/business.jpg', alt='')
-            .percent-inside-point-of-why-us-section
-              h6 Save upto
-              h1
-                | 71
-                span %
-            .topic-inside-why-us-section Time Spend
+          .point-of-why-us-section(data-aos='fade-up' data-aos-duration="1200" data-aos-offset="150")
+            .divs-inside-point-of-why-us-section
+              .image-inside-point-of-why-us-section
+                img(src='../static/img/business.jpg', alt='')
+              .percent-inside-point-of-why-us-section
+                div
+                  h6 Save
+                  h1 71
+                  h6.percentages-in-why-us-sections %
+                .topic-inside-why-us-section Time Spend
             .keypoints-inside-why-us-section
               h6 Through
               ul
                 li.list-items-inside-keypoints-of-why-us-section Instantly getting trucks for goods
                 li.list-items-inside-keypoints-of-why-us-section Online Paperwork/Payment
                 li.list-items-inside-keypoints-of-why-us-section GPS Tracking
-          .point-of-why-us-section
-            .image-inside-point-of-why-us-section
-              img(src='../static/img/reducePrice.jpg', alt='')
-            .percent-inside-point-of-why-us-section
-              h6 Reduce upto
-              h1
-                | 38
-                span %
-            .topic-inside-why-us-section Expenditure
+          .point-of-why-us-section(data-aos='fade-left' data-aos-duration="1200" data-aos-offset="150")
+            .divs-inside-point-of-why-us-section
+              .image-inside-point-of-why-us-section
+                img(src='../static/img/reducePrice.jpg', alt='')
+              .percent-inside-point-of-why-us-section
+                div
+                  h6 Reduce
+                  h1 38
+                  h6.percentages-in-why-us-sections %
+                .topic-inside-why-us-section Expenditure
             .keypoints-inside-why-us-section
               h6 On
               ul
                 li.list-items-inside-keypoints-of-why-us-section Cost Of Transporting Goods
                 li.list-items-inside-keypoints-of-why-us-section Serviceable charges
-    section#below-footer-section
-      .divs-inside-below-footer-section
-        #stay-connected
-          h1 Wanna stay connected with "Our Logistics"?
-        - var user = {AllErrors:AllErrors, name: name , emailAddress:emailAddress}    
-        include partial/flash-messages.pug 
-        form#subscribe-email-form(method='POST', action='/' , onsubmit="return true")
-          .divs-inside-subscribe-email
-            input#name(type='text' , name="name", value=user.name , placeholder='Enter Your Name' , autofocus="" )
-          .divs-inside-subscribe-email
-            input#emailAddress(type='text', name="emailAddress" , value=user.emailAddress , placeholder='Enter Your Email')
-          #div-for-subscribe-button.divs-inside-subscribe-email
-            button#subscribe-us-button(type='submit' onsubmit="myFunction()") Subscribe
- 
-      .divs-inside-below-footer-section
-        #div-social-media-links.div-with-links
-          // Add font awesome icons
-          a.fa.fa-facebook(href='#')
-          a.fa.fa-twitter(href='#')
-          a.fa.fa-instagram(href='#')
-          a.fa.fa-linkedin(href='#')
-      .divs-inside-below-footer-section
-        #copyrights
-          | © All Rights Reserved Our Logistics Pvt. Ltd. 2020                
-    // SIDEBAR TRANSFERER STARTS FROM HERE
-    section#cross-transferer
-      a(href='') ✕
-    section.transferer-section
-      #transferer-login
-        #old-user
-          a(href='')
-            h3 Hello, Log in... 
-        #new-user
-          h2 New Customer?
-          button Sign up
-      #category
-        h1 All Categories
-        ul
-          a(href='')
-            li#product-list
-              | Men's Fashion
-              i.fa.fa-angle-right.arrow
-      #transferer-logo
-        // <img id="logo-img" src="img/logo.png" alt="">
-        h1 The  Mishra's
-    // SIDEBAR TRANSPORTER STARTS FROM HERE
-    section#cross-transporter
-      a(href='') ✕
-    section.transporter-section
-      #transporter-login
-        #old-user
-          a(href='')
-            h3 Hello, Log in... 
-        #new-user
-          h2 New Customer?
-          button Sign up
-      #category
-        h1 All Categories
-        p
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis facere dolorem odio illo atque ea iste quas cumque voluptatibus minus.
-      #transporter-logo
-        // <img id="logo-img" src="img/logo.png" alt="">
-        h1 The  Mishra's
+    section#people-section
+      #heading-of-people-section
+        h1 Founder's Corner
+      .containing-all-people
+        .founders-in-people.our-people
+          .individual-people-in-people-section(data-aos='fade-left')
+            .image-of-people
+              img(src='/static/img/akshat.jpg', alt='', srcset='')
+            .name-of-people Akshat Shrivastava
+            .post-of-people Co-Founder & CEO
+            .for-bio
+              h1 Bio
+              i.fa.fa-angle-down.arrow-down-in-bio
+            .div-containing-bio-in-people-section
+              | At the early age of 19, Akshat founded TGH along wth his two school friends in order to overcome the hedgerows of logistics sector. From his adolescence, he always wanted to take the human race to a whole new level with his ideas. Whenever anything goes wrong at TGH, he is the person everyone looks up to because of his quick and effective decisiveness. His brainstorming capacity led TGH to the logistical revolution.
+              br
+              | He loves to read books and essays of Ralph Waldo Emerson and he believe that "Nothing astonishes men so much as common sense and plain dealing."  He is a huge M.S. Dhoni fan. Bike riding and adventuring is what he does outside of TGH.  
+          .individual-people-in-people-section(data-aos='fade-up')
+            .image-of-people
+              img(src='/static/img/satyam.jpg', alt='', srcset='')
+            .name-of-people Satyam Mishra
+            .post-of-people Co-Founder & CTO
+            .for-bio
+              h1 Bio
+              i.fa.fa-angle-down.arrow-down-in-bio
+            .div-containing-bio-in-people-section
+              | Satyam was a sophomore when on a fine day he has a epiphany which resulted in TGH. &nbsp;A voracious reader in general and equities in particular. Whenever TGH faces a technical headwind, &nbsp;he seems a guy with halo over his head. &nbsp;He is not fond of mincing words and his ascerbic wit exudes from his demeanour. 
+              br
+              | His infatuation of reducing ideas in real world using codes as his relic has turned into an affair and a fractatious one for TGH. &nbsp;His alacrity imbues TGH with required wherewithal for uneasy waters. &nbsp;He believe that "There are no solutions, there are only trade-offs". &nbsp;If he wouldn't have been the CTO of &nbsp;TGH, &nbsp;he might be shorting the Call Options of Reliance.
+          .individual-people-in-people-section(data-aos='fade-left')
+            .image-of-people
+              img(src='/static/img/tanishk.jpg', alt='', srcset='')
+            .name-of-people Tanishk Sahu
+            .post-of-people Co-Founder & CBO
+            .for-bio
+              h1 Bio
+              i.fa.fa-angle-down.arrow-down-in-bio
+            .div-containing-bio-in-people-section
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quae reiciendis laudantium numquam earum reprehenderit error molestias fugiat incidunt repellat nam ab, molestiae saepe! Quas doloremque repellendus, repellat esse qui mollitia, ipsum suscipit reprehenderit animi fugiat laudantium, amet blanditiis quis! Accusantium iusto alias eos expedita error doloremque explicabo, nemo delectus quidem, repellendus, inventore autem ratione ducimus praesentium fugit quo nam consectetur saepe quis quae. Quas, earum rerum ut rem consequatur consectetur exercitationem facere totam culpa. Ratione molestias repellendus aliquid. Praesentium, magni sunt! Provident laboriosam, pariatur natus blanditiis facilis porro aliquam fugiat quo. Nesciunt error quia inventore architecto pariatur nihil cupiditate.
 block script      
+    link(href='https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap', rel='stylesheet')
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap")
+    link(rel="stylesheet" , href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap")
+    script(src='https://unpkg.com/aos@next/dist/aos.js')
+    script.
+      AOS.init({
+        offset:120,
+        duration:1000,
+        once:true,
+        delay:0,
+      })
+    script(src='https://code.jquery.com/jquery-3.5.1.min.js', integrity='sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=', crossorigin='anonymous')
     script(src='../static/script/homeScript.js')
+
+    
