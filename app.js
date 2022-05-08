@@ -5,7 +5,7 @@ const bcrypt=require("bcrypt")
 const passport=require("passport")
 const mongoose=require("mongoose")
 const bodyParser = require('body-parser');
-const uri = "mongodb+srv://satyammishra2:satyammishra@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority";
+const uri = "mongodb+srv://swapnil:swapnil@cluster0.sycob.mongodb.net/OurLogistics?retryWrites=true&w=majority";
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -19,7 +19,7 @@ const flash=require("connect-flash")
 const  MongoDBStore = require('connect-mongodb-session')(session);
 // INITIALIZING MONGOSTORE
 const myMongoStore = new MongoDBStore({
-    uri: "mongodb+srv://satyammishra2:satyammishra@cluster0.y2msr.mongodb.net/OurLogistics?retryWrites=true&w=majority",
+    uri: "mongodb+srv://swapnil:swapnil@cluster0.sycob.mongodb.net/OurLogistics?retryWrites=true&w=majority",
     collection: 'mySessions'
 });
 
